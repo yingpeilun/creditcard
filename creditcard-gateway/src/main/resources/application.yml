@@ -1,0 +1,18 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: creditcard-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10 #拉取服务的间隔时间10秒
+zuul:
+  prefix: /api #设置zuul的前缀
+  routes:
+    item-service: /item/**  #添加商品微服务的路由
+    search-service: /search/**  #搜索产品的微服务的路由
+ribbon:
+  eureka:
+    enabled: true

@@ -1,0 +1,12 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: SMS-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5      #设置心跳时间5秒
+    lease-expiration-duration-in-seconds: 15  #设置过期时间15秒
