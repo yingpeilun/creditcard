@@ -9,13 +9,13 @@ import javax.persistence.Table;
 public class TbBasicInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;//id自增
+    private Long id;//id自增
 
-    private Integer uid;//用户uid
+    private Long uid;//用户uid
 
-    private Integer maritalStatus;//婚姻状况（1为未婚，2为已婚，3为离异，4为丧偶）
+    private Long maritalStatus;//婚姻状况（1为未婚，2为已婚，3为离异，4为丧偶）
 
-    private Integer eduLevel;//教育程度（1为初中，2为高中，3为大专，4为本科，5为本科以上））
+    private Long eduLevel;//教育程度（1为初中，2为高中，3为大专，4为本科，5为本科以上））
 
     private String securityQuestion;//安全问题
 
@@ -23,39 +23,39 @@ public class TbBasicInfo {
 
     private String currentAddress;//当前住址
 
-    private Integer housingStatus;//住宅情况（1为租房，2为自购房，3为自建房）
+    private Long housingStatus;//住宅情况（1为租房，2为自购房，3为自建房）
 
-    private Integer postcode;//邮政编码
+    private Long postcode;//邮政编码
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 
-    public Integer getMaritalStatus() {
+    public Long getMaritalStatus() {
         return maritalStatus;
     }
 
-    public void setMaritalStatus(Integer maritalStatus) {
+    public void setMaritalStatus(Long maritalStatus) {
         this.maritalStatus = maritalStatus;
     }
 
-    public Integer getEduLevel() {
+    public Long getEduLevel() {
         return eduLevel;
     }
 
-    public void setEduLevel(Integer eduLevel) {
+    public void setEduLevel(Long eduLevel) {
         this.eduLevel = eduLevel;
     }
 
@@ -83,19 +83,19 @@ public class TbBasicInfo {
         this.currentAddress = currentAddress == null ? null : currentAddress.trim();
     }
 
-    public Integer getHousingStatus() {
+    public Long getHousingStatus() {
         return housingStatus;
     }
 
-    public void setHousingStatus(Integer housingStatus) {
+    public void setHousingStatus(Long housingStatus) {
         this.housingStatus = housingStatus;
     }
 
-    public Integer getPostcode() {
+    public Long getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(Integer postcode) {
+    public void setPostcode(Long postcode) {
         this.postcode = postcode;
     }
 }

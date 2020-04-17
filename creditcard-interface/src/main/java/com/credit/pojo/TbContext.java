@@ -5,25 +5,25 @@ import javax.persistence.Table;
 @Table(name = "tb_context")
 public class TbContext {
 
-    private Integer sid;//子id
+    private Long sid;//子id
 
-    private Integer fid;//父id
+    private Long fid;//父id
 
     private String scontext;//子菜单内容
 
-    public Integer getSid() {
+    public Long getSid() {
         return sid;
     }
 
-    public void setSid(Integer sid) {
+    public void setSid(Long sid) {
         this.sid = sid;
     }
 
-    public Integer getFid() {
+    public Long getFid() {
         return fid;
     }
 
-    public void setFid(Integer fid) {
+    public void setFid(Long fid) {
         this.fid = fid;
     }
 

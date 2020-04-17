@@ -4,25 +4,25 @@ import javax.persistence.Table;
 
 @Table(name = "tb_worker_context")
 public class TbWorkerContext {
-    private Integer fid;//父id
+    private Long fid;//父id
 
-    private Integer grade;//职位等级
+    private Long grade;//职位等级
 
     private String fcontext;//父菜单内容
 
-    public Integer getFid() {
+    public Long getFid() {
         return fid;
     }
 
-    public void setFid(Integer fid) {
+    public void setFid(Long fid) {
         this.fid = fid;
     }
 
-    public Integer getGrade() {
+    public Long getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(Long grade) {
         this.grade = grade;
     }
 

@@ -9,13 +9,13 @@ import javax.persistence.Table;
 public class TbCompanyInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;//id自增
+    private Long id;//id自增
 
-    private Integer uid;//用户uid
+    private Long uid;//用户uid
 
     private String companyName;//公司名称
 
-    private Integer companyType;//公司类型(1为国有企业，2为私营企业，3事业单位，4政府关机，5为个体户)
+    private Long companyType;//公司类型(1为国有企业，2为私营企业，3事业单位，4政府关机，5为个体户)
 
     private String companyPhone;//公司电话
 
@@ -25,23 +25,23 @@ public class TbCompanyInfo {
 
     private String position;//担任职务
 
-    private Integer income;//年收入（1为5万以下，2为5-15万，3为15-30万，4为30-50，5为50以上）
+    private Long income;//年收入（1为5万以下，2为5-15万，3为15-30万，4为30-50，5为50以上）
 
-    private Integer postcode;//邮政编码
+    private Long postcode;//邮政编码
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 
@@ -53,11 +53,11 @@ public class TbCompanyInfo {
         this.companyName = companyName == null ? null : companyName.trim();
     }
 
-    public Integer getCompanyType() {
+    public Long getCompanyType() {
         return companyType;
     }
 
-    public void setCompanyType(Integer companyType) {
+    public void setCompanyType(Long companyType) {
         this.companyType = companyType;
     }
 
@@ -93,19 +93,19 @@ public class TbCompanyInfo {
         this.position = position == null ? null : position.trim();
     }
 
-    public Integer getIncome() {
+    public Long getIncome() {
         return income;
     }
 
-    public void setIncome(Integer income) {
+    public void setIncome(Long income) {
         this.income = income;
     }
 
-    public Integer getPostcode() {
+    public Long getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(Integer postcode) {
+    public void setPostcode(Long postcode) {
         this.postcode = postcode;
     }
 }

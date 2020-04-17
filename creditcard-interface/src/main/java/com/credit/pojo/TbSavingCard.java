@@ -9,41 +9,41 @@ import javax.persistence.Table;
 public class TbSavingCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;//自增id
+    private Long id;//自增id
 
-    private Integer ccId;//信用卡卡号
+    private Long ccId;//信用卡卡号
 
-    private Integer scId;//储蓄卡卡号
+    private Long scId;//储蓄卡卡号
 
     private String bankName;//银行名
 
-    private Integer singleQuota;//单笔限额
+    private Long singleQuota;//单笔限额
 
     private String cuName;//户头名（储蓄卡主人的名字）
 
-    private Integer totalAmount;//余额（用于模拟支付）
+    private Long totalAmount;//余额（用于模拟支付）
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getCcId() {
+    public Long getCcId() {
         return ccId;
     }
 
-    public void setCcId(Integer ccId) {
+    public void setCcId(Long ccId) {
         this.ccId = ccId;
     }
 
-    public Integer getScId() {
+    public Long getScId() {
         return scId;
     }
 
-    public void setScId(Integer scId) {
+    public void setScId(Long scId) {
         this.scId = scId;
     }
 
@@ -55,11 +55,11 @@ public class TbSavingCard {
         this.bankName = bankName == null ? null : bankName.trim();
     }
 
-    public Integer getSingleQuota() {
+    public Long getSingleQuota() {
         return singleQuota;
     }
 
-    public void setSingleQuota(Integer singleQuota) {
+    public void setSingleQuota(Long singleQuota) {
         this.singleQuota = singleQuota;
     }
 
@@ -71,11 +71,11 @@ public class TbSavingCard {
         this.cuName = cuName == null ? null : cuName.trim();
     }
 
-    public Integer getTotalAmount() {
+    public Long getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Integer totalAmount) {
+    public void setTotalAmount(Long totalAmount) {
         this.totalAmount = totalAmount;
     }
 }

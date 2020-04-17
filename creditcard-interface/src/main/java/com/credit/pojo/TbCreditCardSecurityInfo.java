@@ -6,11 +6,11 @@ import javax.persistence.Table;
 @Table(name = "tb_credit_card_security_info")
 public class TbCreditCardSecurityInfo {
     @Id
-    private Integer ccId;//信用卡卡号
+    private Long ccId;//信用卡卡号
 
-    private Integer uid;//用户uid
+    private Long uid;//用户uid
 
-    private Integer cardType;//卡片状态（1为未激活，2为正常，3为异常，4为冻结，5为挂失，6为销户）
+    private Long cardType;//卡片状态（1为未激活，2为正常，3为异常，4为冻结，5为挂失，6为销户）
 
     private String holderName;//持卡人姓名
 
@@ -22,31 +22,31 @@ public class TbCreditCardSecurityInfo {
 
     private String solt;//用于密码加密
 
-    private Integer valCode;//有效期码（在信用卡的正面）
+    private Long valCode;//有效期码（在信用卡的正面）
 
-    private Integer securityCode;//安全码（在信用卡的背面）
+    private Long securityCode;//安全码（在信用卡的背面）
 
-    public Integer getCcId() {
+    public Long getCcId() {
         return ccId;
     }
 
-    public void setCcId(Integer ccId) {
+    public void setCcId(Long ccId) {
         this.ccId = ccId;
     }
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 
-    public Integer getCardType() {
+    public Long getCardType() {
         return cardType;
     }
 
-    public void setCardType(Integer cardType) {
+    public void setCardType(Long cardType) {
         this.cardType = cardType;
     }
 
@@ -90,19 +90,19 @@ public class TbCreditCardSecurityInfo {
         this.solt = solt == null ? null : solt.trim();
     }
 
-    public Integer getValCode() {
+    public Long getValCode() {
         return valCode;
     }
 
-    public void setValCode(Integer valCode) {
+    public void setValCode(Long valCode) {
         this.valCode = valCode;
     }
 
-    public Integer getSecurityCode() {
+    public Long getSecurityCode() {
         return securityCode;
     }
 
-    public void setSecurityCode(Integer securityCode) {
+    public void setSecurityCode(Long securityCode) {
         this.securityCode = securityCode;
     }
 }

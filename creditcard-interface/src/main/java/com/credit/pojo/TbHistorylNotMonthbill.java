@@ -10,67 +10,67 @@ import java.util.Date;
 public class TbHistorylNotMonthbill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;//自增id
+    private Long id;//自增id
 
-    private Integer ccId;//信用卡卡号
+    private Long ccId;//信用卡卡号
 
-    private Integer currConsumption;//当月消费金额
+    private Long currConsumption;//当月消费金额
 
-    private Integer currRepaid;//当月还款金额
+    private Long currRepaid;//当月还款金额
 
-    private Integer cashAmount;//取现金额
+    private Long cashAmount;//取现金额
 
-    private Integer billDateNum;//账单日（纯数字：20200316）
+    private Long billDateNum;//账单日（纯数字：20200316）
 
     private Date billDate;//账单日(date)
 
     private String moneyType;//币种
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getCcId() {
+    public Long getCcId() {
         return ccId;
     }
 
-    public void setCcId(Integer ccId) {
+    public void setCcId(Long ccId) {
         this.ccId = ccId;
     }
 
-    public Integer getCurrConsumption() {
+    public Long getCurrConsumption() {
         return currConsumption;
     }
 
-    public void setCurrConsumption(Integer currConsumption) {
+    public void setCurrConsumption(Long currConsumption) {
         this.currConsumption = currConsumption;
     }
 
-    public Integer getCurrRepaid() {
+    public Long getCurrRepaid() {
         return currRepaid;
     }
 
-    public void setCurrRepaid(Integer currRepaid) {
+    public void setCurrRepaid(Long currRepaid) {
         this.currRepaid = currRepaid;
     }
 
-    public Integer getCashAmount() {
+    public Long getCashAmount() {
         return cashAmount;
     }
 
-    public void setCashAmount(Integer cashAmount) {
+    public void setCashAmount(Long cashAmount) {
         this.cashAmount = cashAmount;
     }
 
-    public Integer getBillDateNum() {
+    public Long getBillDateNum() {
         return billDateNum;
     }
 
-    public void setBillDateNum(Integer billDateNum) {
+    public void setBillDateNum(Long billDateNum) {
         this.billDateNum = billDateNum;
     }
 

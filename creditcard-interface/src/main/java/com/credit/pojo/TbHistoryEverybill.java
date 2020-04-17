@@ -10,43 +10,43 @@ import java.util.Date;
 public class TbHistoryEverybill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;//自增id
+    private Long id;//自增id
 
-    private Integer ccId;//信用卡卡号
+    private Long ccId;//信用卡卡号
 
     private String payInfo;//交易描述
 
     private String moneyType;//交易币种
 
-    private Integer payAmount;//交易金额·
+    private Long payAmount;//交易金额·
 
-    private Integer payDateNum;//交易日期（纯数字：20200302）
+    private Long payDateNum;//交易日期（纯数字：20200302）
 
-    private Integer getMoneyCard;//收款账号
+    private Long getMoneyCard;//收款账号
 
     private Date payDate;//交易日期（date）
 
-    private Integer billDateNum;//账单日（纯数字：20200316）
+    private Long billDateNum;//账单日（纯数字：20200316）
 
     private Date billDate;//账单日（date）
 
-    private Integer repayDateNum;//还款日（纯数字：20200316）
+    private Long repayDateNum;//还款日（纯数字：20200316）
 
     private Date repayDate;//还款日（date）
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getCcId() {
+    public Long getCcId() {
         return ccId;
     }
 
-    public void setCcId(Integer ccId) {
+    public void setCcId(Long ccId) {
         this.ccId = ccId;
     }
 
@@ -66,27 +66,27 @@ public class TbHistoryEverybill {
         this.moneyType = moneyType == null ? null : moneyType.trim();
     }
 
-    public Integer getPayAmount() {
+    public Long getPayAmount() {
         return payAmount;
     }
 
-    public void setPayAmount(Integer payAmount) {
+    public void setPayAmount(Long payAmount) {
         this.payAmount = payAmount;
     }
 
-    public Integer getPayDateNum() {
+    public Long getPayDateNum() {
         return payDateNum;
     }
 
-    public void setPayDateNum(Integer payDateNum) {
+    public void setPayDateNum(Long payDateNum) {
         this.payDateNum = payDateNum;
     }
 
-    public Integer getGetMoneyCard() {
+    public Long getGetMoneyCard() {
         return getMoneyCard;
     }
 
-    public void setGetMoneyCard(Integer getMoneyCard) {
+    public void setGetMoneyCard(Long getMoneyCard) {
         this.getMoneyCard = getMoneyCard;
     }
 
@@ -98,11 +98,11 @@ public class TbHistoryEverybill {
         this.payDate = payDate;
     }
 
-    public Integer getBillDateNum() {
+    public Long getBillDateNum() {
         return billDateNum;
     }
 
-    public void setBillDateNum(Integer billDateNum) {
+    public void setBillDateNum(Long billDateNum) {
         this.billDateNum = billDateNum;
     }
 
@@ -114,11 +114,11 @@ public class TbHistoryEverybill {
         this.billDate = billDate;
     }
 
-    public Integer getRepayDateNum() {
+    public Long getRepayDateNum() {
         return repayDateNum;
     }
 
-    public void setRepayDateNum(Integer repayDateNum) {
+    public void setRepayDateNum(Long repayDateNum) {
         this.repayDateNum = repayDateNum;
     }
 

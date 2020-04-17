@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name="tb_user")
 public class TbUser {
     @Id
-    private Integer uid;//用户uid
+    private Long uid;//用户uid
 
     private String userName;//登录名
 
@@ -27,11 +27,11 @@ public class TbUser {
 
     private Date logoutTime;//注销时间
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 

@@ -10,7 +10,7 @@ import java.util.Date;
 public class TbWorker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer wid;//自增id
+    private Long wid;//自增id
 
     private String userName;//登录名
 
@@ -18,13 +18,13 @@ public class TbWorker {
 
     private Date loginTime;//登陆时间
 
-    private Integer grade;//职位等级（分为123）
+    private Long grade;//职位等级（分为123）
 
-    public Integer getWid() {
+    public Long getWid() {
         return wid;
     }
 
-    public void setWid(Integer wid) {
+    public void setWid(Long wid) {
         this.wid = wid;
     }
 
@@ -52,11 +52,11 @@ public class TbWorker {
         this.loginTime = loginTime;
     }
 
-    public Integer getGrade() {
+    public Long getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(Long grade) {
         this.grade = grade;
     }
 }

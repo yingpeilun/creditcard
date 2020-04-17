@@ -10,57 +10,57 @@ import java.util.Date;
 public class TbCreditCardInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;//自增id
+    private Long id;//自增id
 
-    private Integer ccId;//信用卡卡号
+    private Long ccId;//信用卡卡号
 
     private String cardType;//卡片类型
 
     private String cardName;//卡片名字
 
-    private Integer billDateNum;//账单日（纯数字：20200316）
+    private Long billDateNum;//账单日（纯数字：20200316）
 
-    private Integer repayDateNum;//还款日（纯数字：20200404）
+    private Long repayDateNum;//还款日（纯数字：20200404）
 
     private Date billDate;//账单日（date）
 
     private Date repayDate;//还款日（date）
 
-    private Integer creditAmount;//信用总额度
+    private Long creditAmount;//信用总额度
 
-    private Integer remainAmount;//剩余额度
+    private Long remainAmount;//剩余额度
 
-    private Integer conAmount;//消费额度
+    private Long conAmount;//消费额度
 
-    private Integer cashTotalAmount;//取消总额度
+    private Long cashTotalAmount;//取消总额度
 
-    private Integer remainCash;//剩余取现额度
+    private Long remainCash;//剩余取现额度
 
-    private Integer cashAmount;//已取现额度
+    private Long cashAmount;//已取现额度
 
-    private Integer repaidAmount;//需还款金额
+    private Long repaidAmount;//需还款金额
 
-    private Integer minpaidAmount;//最小还款金额
+    private Long minpaidAmount;//最小还款金额
 
-    private Integer interest;//利息
+    private Long interest;//利息
 
-    private Integer interestRate;//利率，使用中乘利率后除100
+    private Long interestRate;//利率，使用中乘利率后除100
 
-    private Integer lateFee;//滞纳金
+    private Long lateFee;//滞纳金
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getCcId() {
+    public Long getCcId() {
         return ccId;
     }
 
-    public void setCcId(Integer ccId) {
+    public void setCcId(Long ccId) {
         this.ccId = ccId;
     }
 
@@ -80,19 +80,19 @@ public class TbCreditCardInfo {
         this.cardName = cardName == null ? null : cardName.trim();
     }
 
-    public Integer getBillDateNum() {
+    public Long getBillDateNum() {
         return billDateNum;
     }
 
-    public void setBillDateNum(Integer billDateNum) {
+    public void setBillDateNum(Long billDateNum) {
         this.billDateNum = billDateNum;
     }
 
-    public Integer getRepayDateNum() {
+    public Long getRepayDateNum() {
         return repayDateNum;
     }
 
-    public void setRepayDateNum(Integer repayDateNum) {
+    public void setRepayDateNum(Long repayDateNum) {
         this.repayDateNum = repayDateNum;
     }
 
@@ -112,91 +112,91 @@ public class TbCreditCardInfo {
         this.repayDate = repayDate;
     }
 
-    public Integer getCreditAmount() {
+    public Long getCreditAmount() {
         return creditAmount;
     }
 
-    public void setCreditAmount(Integer creditAmount) {
+    public void setCreditAmount(Long creditAmount) {
         this.creditAmount = creditAmount;
     }
 
-    public Integer getRemainAmount() {
+    public Long getRemainAmount() {
         return remainAmount;
     }
 
-    public void setRemainAmount(Integer remainAmount) {
+    public void setRemainAmount(Long remainAmount) {
         this.remainAmount = remainAmount;
     }
 
-    public Integer getConAmount() {
+    public Long getConAmount() {
         return conAmount;
     }
 
-    public void setConAmount(Integer conAmount) {
+    public void setConAmount(Long conAmount) {
         this.conAmount = conAmount;
     }
 
-    public Integer getCashTotalAmount() {
+    public Long getCashTotalAmount() {
         return cashTotalAmount;
     }
 
-    public void setCashTotalAmount(Integer cashTotalAmount) {
+    public void setCashTotalAmount(Long cashTotalAmount) {
         this.cashTotalAmount = cashTotalAmount;
     }
 
-    public Integer getRemainCash() {
+    public Long getRemainCash() {
         return remainCash;
     }
 
-    public void setRemainCash(Integer remainCash) {
+    public void setRemainCash(Long remainCash) {
         this.remainCash = remainCash;
     }
 
-    public Integer getCashAmount() {
+    public Long getCashAmount() {
         return cashAmount;
     }
 
-    public void setCashAmount(Integer cashAmount) {
+    public void setCashAmount(Long cashAmount) {
         this.cashAmount = cashAmount;
     }
 
-    public Integer getRepaidAmount() {
+    public Long getRepaidAmount() {
         return repaidAmount;
     }
 
-    public void setRepaidAmount(Integer repaidAmount) {
+    public void setRepaidAmount(Long repaidAmount) {
         this.repaidAmount = repaidAmount;
     }
 
-    public Integer getMinpaidAmount() {
+    public Long getMinpaidAmount() {
         return minpaidAmount;
     }
 
-    public void setMinpaidAmount(Integer minpaidAmount) {
+    public void setMinpaidAmount(Long minpaidAmount) {
         this.minpaidAmount = minpaidAmount;
     }
 
-    public Integer getInterest() {
+    public Long getInterest() {
         return interest;
     }
 
-    public void setInterest(Integer interest) {
+    public void setInterest(Long interest) {
         this.interest = interest;
     }
 
-    public Integer getInterestRate() {
+    public Long getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(Integer interestRate) {
+    public void setInterestRate(Long interestRate) {
         this.interestRate = interestRate;
     }
 
-    public Integer getLateFee() {
+    public Long getLateFee() {
         return lateFee;
     }
 
-    public void setLateFee(Integer lateFee) {
+    public void setLateFee(Long lateFee) {
         this.lateFee = lateFee;
     }
 }
