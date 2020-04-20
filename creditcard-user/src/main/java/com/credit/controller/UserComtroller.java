@@ -6,6 +6,8 @@ import com.credit.pojo.TbContactInfo;
 import com.credit.pojo.TbUser;
 import com.credit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +27,12 @@ public class UserComtroller {
      * @return
      */
     @PostMapping("code")
-    public Boolean sendVerifyCode(@RequestParam("phone") String phone) {
-        return this.userService.sendVerifyCode(phone);
+    public ResponseEntity<Void> sendVerifyCode(@RequestParam("phone") String phone) {
+        Boolean boo = this.userService.sendVerifyCode(phone);
+        if(!boo){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     /**
@@ -36,8 +42,12 @@ public class UserComtroller {
      * @return
      */
     @PostMapping("register")
-    public Boolean register(@Valid TbUser user, String code){
-        return this.userService.register(user,code);
+    public ResponseEntity<Boolean> register(@Valid TbUser user, String code){
+        Boolean boo = this.userService.register(user, code);
+        if(!boo){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(boo);
     }
 
     /**
@@ -47,10 +57,14 @@ public class UserComtroller {
      * @return
      */
     @PostMapping("login")
-    public TbUser login(
+    public ResponseEntity<TbUser> login(
             @RequestParam("username")String username,
             @RequestParam("password")String password){
-        return this.userService.login(username,password);
+        TbUser user = this.userService.login(username, password);
+        if(user==null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(user);
     }
 
     /**
@@ -60,10 +74,14 @@ public class UserComtroller {
      * @return
      */
     @PostMapping("alterPassword")
-    public Boolean alterPassword(TbUser user,
+    public ResponseEntity<Boolean> alterPassword(TbUser user,
             @RequestParam("code")String code
     ){
-        return this.userService.alterPassword(user,code);
+        Boolean boo = this.userService.alterPassword(user, code);
+        if(!boo){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(boo);
     }
 
     /**
@@ -72,8 +90,12 @@ public class UserComtroller {
      * @return
      */
     @GetMapping("queryBasic")
-    public TbBasicInfo queryBasic(@RequestParam("uid")int uid){
-        return this.userService.queryBasic(uid);
+    public ResponseEntity<TbBasicInfo> queryBasic(@RequestParam("uid")int uid){
+        TbBasicInfo basicInfo = this.userService.queryBasic(uid);
+        if(basicInfo==null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(basicInfo);
     }
 
     /**
@@ -82,8 +104,12 @@ public class UserComtroller {
      * @return
      */
     @PostMapping("updateBasic")
-    public Boolean updateBasic(TbBasicInfo basicInfo){
-        return this.userService.updateBasic(basicInfo);
+    public ResponseEntity<Boolean> updateBasic(TbBasicInfo basicInfo){
+        Boolean boo = this.userService.updateBasic(basicInfo);
+        if(!boo){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(boo);
     }
 
     /**
@@ -92,8 +118,12 @@ public class UserComtroller {
      * @return
      */
     @GetMapping("queryCompany")
-    public TbCompanyInfo queryCompany(@RequestParam("uid")int uid){
-        return this.userService.queryCompany(uid);
+    public ResponseEntity<TbCompanyInfo> queryCompany(@RequestParam("uid")int uid){
+        TbCompanyInfo companyInfo = this.userService.queryCompany(uid);
+        if(companyInfo==null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(companyInfo);
     }
 
     /**
@@ -101,9 +131,13 @@ public class UserComtroller {
      * @param companyInfo
      * @return
      */
-    @PostMapping("updateBasic")
-    public Boolean updateCompany(TbCompanyInfo companyInfo){
-        return this.userService.updateCompany(companyInfo);
+    @PostMapping("updateCompany")
+    public ResponseEntity<Boolean> updateCompany(TbCompanyInfo companyInfo){
+        Boolean boo = this.userService.updateCompany(companyInfo);
+        if(!boo){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(boo);
     }
 
     /**
@@ -112,8 +146,12 @@ public class UserComtroller {
      * @return
      */
     @GetMapping("queryContact")
-    public TbContactInfo queryContact(@RequestParam("uid")int uid){
-        return this.userService.queryContact(uid);
+    public ResponseEntity<TbContactInfo> queryContact(@RequestParam("uid")int uid){
+        TbContactInfo contactInfo = this.userService.queryContact(uid);
+        if(contactInfo==null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(contactInfo);
     }
 
     /**
@@ -121,9 +159,13 @@ public class UserComtroller {
      * @param contactInfo
      * @return
      */
-    @PostMapping("updateBasic")
-    public Boolean updateBasic(TbContactInfo contactInfo){
-        return this.userService.updateContact(contactInfo);
+    @PostMapping("updateContact")
+    public ResponseEntity<Boolean> updateContact(TbContactInfo contactInfo){
+        Boolean boo = this.userService.updateContact(contactInfo);
+        if(!boo){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(boo);
     }
 
 }

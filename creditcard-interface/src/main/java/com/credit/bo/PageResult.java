@@ -4,29 +4,29 @@ import java.util.List;
 
 public class PageResult<T> {
 
-    private Integer total;
+    private Long total;
     private Integer totalPage;
     private List<T> items;
 
     public PageResult() {
     }
 
-    public PageResult(Integer total, List<T> items) {
+    public PageResult(Long total, List<T> items) {
         this.total = total;
         this.items = items;
     }
 
-    public PageResult(Integer total, Integer totalPage, List<T> items) {
+    public PageResult(Long total, Integer totalPage, List<T> items) {
         this.total = total;
         this.totalPage = totalPage;
         this.items = items;
     }
 
-    public Integer getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 
