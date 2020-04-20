@@ -19,6 +19,7 @@
         <module>creditcard-applycard</module>
         <module>creditcard-user</module>
         <module>creditcard-SMS</module>
+        <module>creditcard-customer</module>
     </modules>
 
 
