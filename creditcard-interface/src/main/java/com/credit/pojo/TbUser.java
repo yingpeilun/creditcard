@@ -1,7 +1,11 @@
 package com.credit.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Table(name="tb_user")
@@ -9,16 +13,22 @@ public class TbUser {
     @Id
     private Long uid;//用户uid
 
+    @Length(min = 4, max = 30, message = "用户名只能在4~30位之间")
     private String userName;//登录名
 
+    @JsonIgnore
+    @Length(min = 4, max = 30, message = "用户名只能在4~30位之间")
     private String userPwd;//登录密码
 
+    @JsonIgnore
     private String solt;//密码加密的salt值
 
+    @Pattern(regexp = "^1[35678]\\d{9}$", message = "手机号格式不正确")
     private String mobilePhone;//移动电话
 
     private String realName;//真实姓名
 
+    @Pattern(regexp = "^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$", message = "身份证18位长度不够")
     private String idCard;//身份证
 
     private Date registerTime;//注册时间
