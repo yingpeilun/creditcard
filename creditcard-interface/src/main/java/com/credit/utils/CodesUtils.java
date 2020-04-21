@@ -15,7 +15,7 @@ public class CodesUtils {
     }
 
     /**
-     * 登录验证密码
+     * 验证密码
      * @param password
      * @param salt
      * @return
