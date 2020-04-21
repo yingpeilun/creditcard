@@ -17,7 +17,6 @@ public class TbUser {
     private String userName;//登录名
 
     @JsonIgnore
-    @Length(min = 4, max = 30, message = "用户名只能在4~30位之间")
     private String userPwd;//登录密码
 
     @JsonIgnore

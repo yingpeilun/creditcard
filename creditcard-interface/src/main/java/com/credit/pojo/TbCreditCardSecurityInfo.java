@@ -1,5 +1,7 @@
 package com.credit.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,12 +20,15 @@ public class TbCreditCardSecurityInfo {
 
     private String idCard;//身份证
 
+    @JsonIgnore
     private String paypwd;//支付密码
 
+    @JsonIgnore
     private String solt;//用于密码加密
 
     private Long valCode;//有效期码（在信用卡的正面）
 
+    @JsonIgnore
     private Long securityCode;//安全码（在信用卡的背面）
 
     public Long getCcId() {

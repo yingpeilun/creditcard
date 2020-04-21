@@ -89,7 +89,7 @@ public class UserService {
         user.setSolt(salt);
         user.setUserPwd(password);
 
-        Boolean boo= this.userMapper.insert(user)==0;
+        Boolean boo= this.userMapper.insert(user)!=0;
         if(boo==true){
             redisTemplate.delete(KEY_PREFIX+user.getMobilePhone());
         }
@@ -110,7 +110,7 @@ public class UserService {
         if(user==null){
             return null;
         }
-        if(!user.getUserPwd().equals(CodesUtils.validate(password,user.getSolt()))){
+        if(!CodesUtils.validate(password,user.getUserPwd())){
             return null;
         }
         return user;

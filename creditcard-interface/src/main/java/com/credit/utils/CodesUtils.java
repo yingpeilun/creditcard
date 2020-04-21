@@ -16,12 +16,12 @@ public class CodesUtils {
 
     /**
      * 验证密码
-     * @param password
-     * @param salt
+     * @param inputPwd
+     * @param dataPwd
      * @return
      */
-    public static Boolean validate(String password, String salt) {
-        return BCrypt.checkpw(password, salt);
+    public static Boolean validate(String inputPwd, String dataPwd) {
+        return BCrypt.checkpw(inputPwd, dataPwd);
     }
 
     /**
