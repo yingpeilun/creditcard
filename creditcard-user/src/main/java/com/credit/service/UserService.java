@@ -132,7 +132,8 @@ public class UserService {
         //通过唯一的手机号进行查找到对象
         re.setMobilePhone(user.getMobilePhone());
         TbUser tbUser = this.userMapper.selectOne(re);
-        tbUser.setUserPwd(user.getUserPwd());
+        String password = CodesUtils.generatePassword(user.getUserPwd(), re.getSolt());
+        tbUser.setUserPwd(password);
         return this.userMapper.insertSelective(tbUser)!=0;
     }
 
