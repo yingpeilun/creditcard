@@ -129,7 +129,8 @@ public class UserService {
             return false;
         }
         TbUser re=new TbUser();
-        re.setUserName(user.getMobilePhone());
+        //通过唯一的手机号进行查找到对象
+        re.setMobilePhone(user.getMobilePhone());
         TbUser tbUser = this.userMapper.selectOne(re);
         tbUser.setUserPwd(user.getUserPwd());
         return this.userMapper.insertSelective(tbUser)!=0;
