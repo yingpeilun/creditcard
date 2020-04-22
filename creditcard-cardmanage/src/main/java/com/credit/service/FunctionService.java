@@ -179,4 +179,19 @@ public class FunctionService {
             rabbitTemplate.convertAndSend("creditCard.bill.exchange","bill.consume.msg",map);
         });
     }
+
+    /**
+     * 更新信用卡的剩余额度和需还款额度
+     * @param ccId
+     * @param repayMoney
+     */
+    public void updateCardAmount(String ccId,String repayMoney){
+        TbCreditCardInfo ci=new TbCreditCardInfo();
+        ci.setCcId(Long.valueOf(ccId));
+        TbCreditCardInfo cardInfo = this.creditCardInfoMapper.selectOne(ci);
+        ci.setId(cardInfo.getId());
+        ci.setRepaidAmount(cardInfo.getRepaidAmount()-Long.valueOf(repayMoney));
+        ci.setRemainAmount(cardInfo.getRemainAmount()-Long.valueOf(repayMoney));
+        this.creditCardInfoMapper.updateByPrimaryKeySelective(ci);
+    }
 }
