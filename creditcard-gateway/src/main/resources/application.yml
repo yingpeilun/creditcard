@@ -16,3 +16,12 @@ zuul:
 ribbon:
   eureka:
     enabled: true
+credit:
+  filter:
+    allowPaths:
+    - /api/auth
+    - /api/search
+    - /api/user/register
+    - /api/user/check
+    - /api/user/code
+    - /api/item
