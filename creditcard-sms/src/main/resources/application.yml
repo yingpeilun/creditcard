@@ -2,7 +2,7 @@ server:
   port: 8087
 spring:
   application:
-    name: SMS-service
+    name: sms-service
 eureka:
   client:
     service-url:
@@ -10,7 +10,7 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 5      #设置心跳时间5秒
     lease-expiration-duration-in-seconds: 15  #设置过期时间15秒
-creditCard:
+credit:
   sms:
     accessKeyId: LTAI4FccnAwpngn4bAFaKnn5 # 你自己的accessKeyId
     secret: E2soyosjUKIqUxxdIsiJb5zapGw7H0 # 你自己的AccessKeySecret

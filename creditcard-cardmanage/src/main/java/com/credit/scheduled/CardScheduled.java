@@ -20,7 +20,7 @@ public class CardScheduled {
     /**
      * 定时更新信用卡信息
      */
-    @Scheduled(cron = "0 0 1 * * ? *")
+    @Scheduled(cron = "0 0 1 * * ?")
     public void updateCardDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String format = sdf.format(new Date());
@@ -45,7 +45,7 @@ public class CardScheduled {
     /**
      * 定时更新信用卡利息，滞纳金信息
      */
-    @Scheduled(cron = "0 0 2 * * ? *")
+    @Scheduled(cron = "0 0 2 * * ?")
     public void updateCardInt() {
         this.functionService.scheduledUpdateInt();
     }

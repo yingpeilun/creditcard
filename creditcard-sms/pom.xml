@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.creditcard.SMS</groupId>
-    <artifactId>creditcard-SMS</artifactId>
+    <groupId>com.creditcard.sms</groupId>
+    <artifactId>creditcard-sms</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>

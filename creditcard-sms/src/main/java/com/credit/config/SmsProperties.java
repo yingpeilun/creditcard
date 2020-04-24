@@ -2,7 +2,7 @@ package com.credit.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "creditCard.sms")
+@ConfigurationProperties(prefix = "credit.sms")
 public class SmsProperties {
 
     private String SignName;

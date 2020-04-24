@@ -1,0 +1,80 @@
+package com.credit.api;
+
+import com.credit.pojo.TbCreditCardInfo;
+import com.credit.pojo.TbCreditCardSecurityInfo;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+import java.util.Map;
+
+public interface ManageApi {
+
+    /**
+     * 发送手机验证码
+     * @param phone
+     * @return
+     */
+    @PostMapping("code")
+    public Void sendVerifyCode(@RequestParam("phone") String phone);
+
+
+    /**
+     * 查询客户名下的信用卡
+     * @param uid
+     * @return
+     */
+    public List<TbCreditCardInfo>
+    queryContactCardByUid(@RequestParam("uid") Long uid);
+
+    /**
+     * 修改信用卡支付密码
+     * @param oldpaypwd 旧密码
+     * @param newpaypwd 新密码
+     * @param creditCardId 卡号
+     * @return
+     */
+    public Map<String,Object>alterCardPayPassword(
+            @RequestParam("oldpaypwd")String oldpaypwd,
+            @RequestParam("newpaypwd")String newpaypwd,
+            @RequestParam("creditCardId")Long creditCardId);
+
+
+    /**
+     * 重置信用卡支付密码
+     * @param creditCardId
+     * @param securityCode
+     * @param valCode
+     * @param smsCode
+     * @param newPayPwd
+     * @return
+     */
+    public Map<String,Object>resetCardPayPassword(
+            @RequestParam("creditCardId")Long creditCardId,
+            @RequestParam("creditCardSecurityCode")Long securityCode,
+            @RequestParam("valCode")Long valCode,
+            @RequestParam("smsCode")String smsCode,
+            @RequestParam("newPayPwd") String newPayPwd);
+
+    /**
+     * 根据卡号或者身份证查找名下的卡片（卡片安全信息表）
+     * @param creditCardId
+     * @param idcard
+     * @return
+     */
+    public List<TbCreditCardSecurityInfo>queryContactCardByCIDorIDC(
+            @RequestParam(value = "creditCardId",required = false )Long creditCardId,
+            @RequestParam(value = "idcard",required = false ) String idcard);
+
+    /**
+     * 调整信用卡额度
+     * @param creditCardId
+     * @param creditAmount
+     * @return
+     */
+    public Map<String,Object>alterCreditAmount(
+            @RequestParam(value = "creditCardId")Long creditCardId,
+            @RequestParam(value = "creditAmount") Long creditAmount);
+}
+
