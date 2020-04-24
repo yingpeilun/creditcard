@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class Listener {
+public class ManageListener {
 
     @Autowired
     private FunctionService functionService;
@@ -21,12 +21,13 @@ public class Listener {
     @Autowired
     private ManageService manageService;
 
+    //监听还款
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "creditCard.repay.queue",durable = "true"),
             exchange = @Exchange(value = "creditCard.repay.exchange",type = "topic",ignoreDeclarationExceptions = "true"),
             key = "repay.money.msg"
     ))
-    public void ListenSms(Map<String,String> msg){
+    public void ListenRepay(Map<String,String> msg){
 
         String bankName=msg.get("bankName");
         String cuName=msg.get("cuName");
@@ -51,6 +52,19 @@ public class Listener {
 //        }else if(!StringUtils.isBlank(interest)){
 //            //this.functionService.
 //        }
+
+    }
+
+    /**
+     * 监听确定分期
+     * @param msg
+     */
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "creditCard.instalment.queue",durable = "true"),
+            exchange = @Exchange(value = "creditCard.manage.exchange",type = "topic",ignoreDeclarationExceptions = "true"),
+            key = "instalment.money.msg"
+    ))
+    public void ListenInstalment(Map<String,String> msg){
 
     }
 }

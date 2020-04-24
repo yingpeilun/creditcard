@@ -220,7 +220,8 @@ public class InstalmentService {
             msg.put("getMoneyCard","中信银行");
             msg.put("billDateNum",dateformat1);
 
-            this.rabbitTemplate.convertAndSend("creditCard.bill.exchange","bill.instalment.msg",msg);
+            this.rabbitTemplate.convertAndSend("creditCard.bill.exchange","instalment.bill.msg",msg);
+            this.rabbitTemplate.convertAndSend("creditCard.manage.exchange","instalment.money.msg",msg);
             return true;
         }
         return false;
