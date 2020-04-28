@@ -1,5 +1,7 @@
 package com.credit.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,15 +25,15 @@ public class TbHistoryEverybill {
     private Long payDateNum;//交易日期（纯数字：20200302）
 
     private Long getMoneyCard;//收款账号
-
+    @DateTimeFormat(pattern = "yyyyMMdd")
     private Date payDate;//交易日期（date）
 
     private Long billDateNum;//账单日（纯数字：20200316）
-
+    @DateTimeFormat(pattern = "yyyyMMdd")
     private Date billDate;//账单日（date）
 
     private Long repayDateNum;//还款日（纯数字：20200316）
-
+    @DateTimeFormat(pattern = "yyyyMMdd")
     private Date repayDate;//还款日（date）
 
     public Long getId() {

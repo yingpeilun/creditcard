@@ -1,5 +1,7 @@
 package com.credit.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +23,7 @@ public class TbHistorylNotMonthbill {
     private Long cashAmount;//取现金额
 
     private Long billDateNum;//账单日（纯数字：20200316）
-
+    @DateTimeFormat(pattern = "yyyyMMdd")
     private Date billDate;//账单日(date)
 
     private String moneyType;//币种
