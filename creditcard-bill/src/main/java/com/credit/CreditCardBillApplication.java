@@ -7,6 +7,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@MapperScan("com.credit.mapper")
 public class CreditCardBillApplication {
     public static void main(String[] args) {
         SpringApplication.run(CreditCardBillApplication.class);
