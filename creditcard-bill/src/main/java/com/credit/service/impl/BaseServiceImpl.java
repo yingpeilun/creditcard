@@ -79,7 +79,7 @@ public class BaseServiceImpl implements BaseService {
      */
     public Long getaLong(List<TbCreditCardSecurityInfo> cardIdList, List<TbCreditCardInfo> cardlsit) {
         Long sum = null;
-        if(cardIdList != null) {
+        if(!cardIdList.isEmpty()) {
             for (int i = 0; i < cardIdList.size(); i++) {
                 TbCreditCardSecurityInfo vo = cardIdList.get(i);
                 Long ccId = vo.getCcId();//卡号
@@ -90,7 +90,7 @@ public class BaseServiceImpl implements BaseService {
                 po.setCcId(ccId);
                 po.setCardName(cardName);
                 cardlsit.add(po);
-                sum = +repaidAmount;//需还款总额
+                sum =+ repaidAmount;//需还款总额
             }
         }else{
             sum = 0L;

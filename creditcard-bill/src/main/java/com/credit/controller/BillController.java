@@ -35,17 +35,15 @@ public class BillController {
     private NotBillService notBillService;
 
     @RequestMapping(value = "/bill")
-    public String getyichubill(
-            HttpServletRequest request,
-            Model model){
+    public String getyichubill(HttpServletRequest request, Model model){
         //*************账单汇总(需还款总额,显示卡号和卡名)**********
         HttpSession session = request.getSession();
         TbUser user = (TbUser) session.getAttribute("user");
         Long uid = user.getUid();
         //通过uid的查询所有卡片信息
         List<TbCreditCardSecurityInfo> cardIdList = baseService.findCardidlistbyUid(uid);
-        if(cardIdList == null){
-            return "zhuye";
+        if(cardIdList.isEmpty()){//没注册卡时跳回主页
+            return "主页名";
         }
         //对象里用于装（卡号和卡名）
         List<TbCreditCardInfo> cardlsit = new ArrayList<TbCreditCardInfo>();
@@ -65,7 +63,7 @@ public class BillController {
         //int day = c.get(Calendar.DAY_OF_WEEK);
                 //最近还款日
         String date = currentYear +""+ month +"04";
-        model.addAttribute("date",date);           //==> 最近还款日
+        model.addAttribute("currentPayDate",date);           //==> 最近还款日
 
         List<String> yearMonthlsit = new ArrayList<String>();
         //（调用获取12个月的已出账单）
@@ -73,7 +71,7 @@ public class BillController {
         model.addAttribute("yearMonthlsit",yearMonthlsit);  //==> 12个月内的已出账单年月
 
         //***********账单概要（默认是 上个月的账单信息）***********
-        // 第一个卡号【cardlsit里的get（1）】
+        // 点击账单查询默认：第一个卡号【cardlsit里的get（1）】；否则是所传卡号的
         // 通过（上个月账单日）、（卡号） 查找1个 （上个月的历史账单概要）
 
 
@@ -86,7 +84,7 @@ public class BillController {
 
 
 
-        return "";
+        return "账单查询";
     }
 
 
