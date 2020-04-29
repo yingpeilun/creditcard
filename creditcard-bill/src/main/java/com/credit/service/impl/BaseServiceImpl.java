@@ -86,9 +86,11 @@ public class BaseServiceImpl implements BaseService {
                 TbCreditCardInfo jo = this.findCardInfobyCcid(ccId);
                 Long repaidAmount = jo.getRepaidAmount(); //一张卡的需还款金额
                 String cardName = jo.getCardName();//卡名
+                Long cid = jo.getId();
                 TbCreditCardInfo po = new TbCreditCardInfo();
                 po.setCcId(ccId);
                 po.setCardName(cardName);
+                po.setId(cid);
                 cardlsit.add(po);
                 sum =+ repaidAmount;//需还款总额
             }
@@ -96,6 +98,23 @@ public class BaseServiceImpl implements BaseService {
             sum = 0L;
         }
         return sum;
+    }
+
+    /**
+     * 查找上个月的账单日
+     * @param currentYear 当前年份
+     * @param currentMonth 当前月份
+     * @return String
+     */
+    public String getBillday(int currentYear, int currentMonth) {
+        int shangMonth;//上个月
+        int shangYear = currentYear;//年份
+        if((shangMonth = (currentMonth - 1))<= 0){
+            shangMonth = 12;
+            shangYear =- 1;
+        }
+        String shangmonth = getNum(shangMonth);
+        return shangYear +""+ shangmonth +"16";
     }
 
 }

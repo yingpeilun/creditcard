@@ -40,4 +40,12 @@ public interface BaseService {
      * @return
      */
     public Long getaLong(List<TbCreditCardSecurityInfo> cardIdList, List<TbCreditCardInfo> cardlsit);
+
+    /**
+     * 查找上个月的账单日
+     * @param currentYear 当前年份
+     * @param currentMonth 当前月份
+     * @return String
+     */
+    public String getBillday(int currentYear, int currentMonth);
 }
