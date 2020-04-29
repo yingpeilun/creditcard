@@ -33,7 +33,15 @@ public class BillController {
     @Autowired
     private BillService billService;
 
-
+    /**
+     * 前端账单查询
+     * @param pageNo 第几页
+     * @param pageSize 显示几行
+     * @param request 请求封装对象
+     * @param model 响应model传值对象
+     * @param CId 信用卡主键id
+     * @return
+     */
     @RequestMapping(value = "/bill")
     public String getyichubill(
             @RequestParam(value = "pageNo",defaultValue = "1" ) Integer pageNo,
@@ -124,7 +132,7 @@ public class BillController {
         //多条件分页查询上月的账单明细
         PageInfo<TbHistoryEverybill> EbillPageInfo = billService.selectOneMontheverybillhistory(shangbilldate1, shangshangbilldate1, ccId1, pageNo, pageSize);
         model.addAttribute("ebpageinfo",EbillPageInfo);
-        return "账单查询页面";
+        return "已出账单查询页面";
     }
 
     /**
