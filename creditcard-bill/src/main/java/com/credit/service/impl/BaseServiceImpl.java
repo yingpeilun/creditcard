@@ -42,4 +42,60 @@ public class BaseServiceImpl implements BaseService {
         vo.setCcId(ccId);
         return creditCardInfoMapper.selectOne(vo);
     }
+
+    /**
+     * 获取已出账单的12个月的（年月信息）
+     * @param currentYear 当前年份
+     * @param yearMonthlsit 用于装12个月的年月集合
+     */
+    public void getYearMonth12(int currentMonth, int currentYear, List<String> yearMonthlsit) {
+        for (int j = 0; j < 12; j++ ){
+            currentMonth =- 1;
+            if((currentMonth - 1) <= 0){
+                currentMonth = 12;
+                currentYear =- 1;
+            }
+            String m = getNum(currentMonth);
+            String yearMonth =  currentYear +"年"+ m + "月";
+            yearMonthlsit.add(yearMonth);
+        }
+    }
+
+    /**
+     * 处理日期int前面的无零的问题
+     * @param num 原数
+     * @return
+     */
+    public static String getNum(int num){
+        return num > 9 ? "" + num : "0" + num;
+    }
+
+    /**
+     * 1. 计算还款总额；
+     * 2. 用对象装用户的所有卡片
+     * @param cardIdList 所装所有卡片信息
+     * @param cardlsit 用于装卡名和卡号
+     * @return
+     */
+    public Long getaLong(List<TbCreditCardSecurityInfo> cardIdList, List<TbCreditCardInfo> cardlsit) {
+        Long sum = null;
+        if(cardIdList != null) {
+            for (int i = 0; i < cardIdList.size(); i++) {
+                TbCreditCardSecurityInfo vo = cardIdList.get(i);
+                Long ccId = vo.getCcId();//卡号
+                TbCreditCardInfo jo = this.findCardInfobyCcid(ccId);
+                Long repaidAmount = jo.getRepaidAmount(); //一张卡的需还款金额
+                String cardName = jo.getCardName();//卡名
+                TbCreditCardInfo po = new TbCreditCardInfo();
+                po.setCcId(ccId);
+                po.setCardName(cardName);
+                cardlsit.add(po);
+                sum = +repaidAmount;//需还款总额
+            }
+        }else{
+            sum = 0L;
+        }
+        return sum;
+    }
+
 }

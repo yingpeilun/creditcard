@@ -24,4 +24,20 @@ public interface BaseService {
      * @return
      */
     public TbCreditCardInfo findCardInfobyCcid(Long ccId);
+
+    /**
+     * 获取已出账单的12个月的（年月信息）
+     * @param currentYear 当前年份
+     * @param yearMonthlsit 用于装12个月的年月集合
+     */
+    public void getYearMonth12(int currentMonth,int currentYear, List<String> yearMonthlsit);
+
+    /**
+     * 1. 计算还款总额；
+     * 2. 用对象装用户的所有卡片
+     * @param cardIdList 所装所有卡片信息
+     * @param cardlsit 用于装卡名和卡号
+     * @return
+     */
+    public Long getaLong(List<TbCreditCardSecurityInfo> cardIdList, List<TbCreditCardInfo> cardlsit);
 }
