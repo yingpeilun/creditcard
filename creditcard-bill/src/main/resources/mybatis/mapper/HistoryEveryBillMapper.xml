@@ -21,5 +21,6 @@
           SELECT id,cc_id,pay_info,money_type,pay_amount,pay_date_num,get_money_card,pay_date,bill_date_num,bill_date,repay_date_num,repay_date
           FROM tb_history_everybill
           WHERE bill_date IS BETWEEN #{s} AND #{ss} and cc_id = #{ccid}
+          ORDER BY bill_date DESC
     </select>
 </mapper>
