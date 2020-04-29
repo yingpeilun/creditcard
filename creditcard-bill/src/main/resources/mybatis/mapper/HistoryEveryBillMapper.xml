@@ -17,7 +17,9 @@
         <result column="repay_date_num" property="repayDateNum" jdbcType="BIGINT" />
         <result column="repay_date" property="repayDate"  />
     </resultMap>
-    <select id="getOneMonthEverybillHistory" parameterType="TbHistoryEverybill" resultMap="ResultBillMap">
-
+    <select id="getOneMonthEverybillHistory" parameterType="java.util.Map" resultMap="ResultBillMap">
+          SELECT id,cc_id,pay_info,money_type,pay_amount,pay_date_num,get_money_card,pay_date,bill_date_num,bill_date,repay_date_num,repay_date
+          FROM tb_history_everybill
+          WHERE bill_date IS BETWEEN #{s} AND #{ss} and cc_id = #{ccid}
     </select>
 </mapper>

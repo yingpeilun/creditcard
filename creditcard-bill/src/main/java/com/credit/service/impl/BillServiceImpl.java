@@ -62,10 +62,10 @@ public class BillServiceImpl implements BillService {
      *  s 上个月账单日
      *  ss （上上个月账单日-1）
      *  ccid 所选的卡号
-     * @param  map
+     * @param map
      * @return
      */
     public List<TbHistoryEverybill> getOneMonthEverybillHistory(Map<String,Object> map){
-        return ;
+        return historyEveryBillMapper.getOneMonthEverybillHistory(map);
     }
 }
