@@ -58,7 +58,7 @@ public class BillServiceImpl implements BillService {
     }
 
     /**
-     * 多条件查询相应时间内的账单明细
+     * 多条件查询相应时间内的某张卡的账单明细
      *  s 上个月账单日
      *  ss （上上个月账单日-1）
      *  ccid 所选的卡号
