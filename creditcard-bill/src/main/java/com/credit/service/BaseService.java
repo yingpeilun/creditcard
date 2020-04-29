@@ -3,6 +3,8 @@ package com.credit.service;
 import com.credit.pojo.TbCreditCardInfo;
 import com.credit.pojo.TbCreditCardSecurityInfo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,4 +50,20 @@ public interface BaseService {
      * @return String
      */
     public String getBillday(int currentYear, int currentMonth);
+
+    /**
+     * 查找上上个月的（账单日+1）
+     * @param currentYear 当前年份
+     * @param currentMonth 当前月份
+     * @return String
+     */
+    public String getshangshangBillDate(int currentYear, int currentMonth);
+
+    /**
+     * 日期转换：String => java.util.Date
+     * @param sdf 日期格式对象
+     * @param shangshangBillDate 上上个月账单日的String类型
+     * @return
+     */
+    public Date getDate(SimpleDateFormat sdf, String shangshangBillDate);
 }

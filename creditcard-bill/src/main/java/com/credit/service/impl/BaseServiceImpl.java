@@ -8,6 +8,9 @@ import com.credit.service.BaseService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -49,14 +52,16 @@ public class BaseServiceImpl implements BaseService {
      * @param yearMonthlsit 用于装12个月的年月集合
      */
     public void getYearMonth12(int currentMonth, int currentYear, List<String> yearMonthlsit) {
+        int month = currentMonth;
+        int year = currentYear;
         for (int j = 0; j < 12; j++ ){
-            currentMonth =- 1;
-            if((currentMonth - 1) <= 0){
-                currentMonth = 12;
-                currentYear =- 1;
+            month =- 1;
+            if((month - 1) <= 0){
+                month = 12;
+                year =- 1;
             }
-            String m = getNum(currentMonth);
-            String yearMonth =  currentYear +"年"+ m + "月";
+            String m = getNum(month);
+            String yearMonth =  year +"年"+ m + "月";
             yearMonthlsit.add(yearMonth);
         }
     }
@@ -86,7 +91,7 @@ public class BaseServiceImpl implements BaseService {
                 TbCreditCardInfo jo = this.findCardInfobyCcid(ccId);
                 Long repaidAmount = jo.getRepaidAmount(); //一张卡的需还款金额
                 String cardName = jo.getCardName();//卡名
-                Long cid = jo.getId();
+                Long cid = jo.getId();//获取卡片id主键（cid）
                 TbCreditCardInfo po = new TbCreditCardInfo();
                 po.setCcId(ccId);
                 po.setCardName(cardName);
@@ -107,9 +112,9 @@ public class BaseServiceImpl implements BaseService {
      * @return String
      */
     public String getBillday(int currentYear, int currentMonth) {
-        int shangMonth;//上个月
+        int shangMonth = currentMonth - 1;//上个月
         int shangYear = currentYear;//年份
-        if((shangMonth = (currentMonth - 1))<= 0){
+        if(shangMonth <= 0){
             shangMonth = 12;
             shangYear =- 1;
         }
@@ -117,4 +122,36 @@ public class BaseServiceImpl implements BaseService {
         return shangYear +""+ shangmonth +"16";
     }
 
+    /**
+     * 查找上上个月的（账单日+1）
+     * @param currentYear 当前年份
+     * @param currentMonth 当前月份
+     * @return String
+     */
+    public String getshangshangBillDate(int currentYear, int currentMonth) {
+        int shangshangMonth = currentMonth - 2;//上上个月
+        int year_1 = currentYear;//年份
+        if(shangshangMonth<= 0){
+            shangshangMonth = 12;
+            year_1 =- 1;
+        }
+        String shangshangmonth = getNum(shangshangMonth);
+        return year_1 +""+ shangshangmonth +"17";
+    }
+
+    /**
+     * 日期转换：String => java.util.Date
+     * @param sdf 日期格式对象
+     * @param shangshangBillDate 上上个月账单日的String类型
+     * @return Date
+     */
+    public Date getDate(SimpleDateFormat sdf, String shangshangBillDate) {
+        Date shangshangbilldate1 = null;
+        try {
+            shangshangbilldate1 = sdf.parse(shangshangBillDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return shangshangbilldate1;
+    }
 }
