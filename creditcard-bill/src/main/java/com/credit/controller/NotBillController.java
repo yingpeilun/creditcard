@@ -34,8 +34,17 @@ public class NotBillController {
     @Autowired
     private BaseService baseService;
 
+    /**
+     * 前端未出账单查询
+     * @param pageNo 第几页
+     * @param pageSize 显示几行
+     * @param request 请求封装对象
+     * @param model 响应model传值对象
+     * @param CId 信用卡主键id
+     * @return
+     */
     @RequestMapping(value = "/notbill")
-    public String getyichubill(
+    public String getweichubill(
             @RequestParam(value = "pageNo",defaultValue = "1" ) Integer pageNo,
             @RequestParam(value = "pageSize",defaultValue = "8" ) Integer pageSize,
             HttpServletRequest request,

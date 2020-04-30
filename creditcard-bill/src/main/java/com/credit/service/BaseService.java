@@ -27,6 +27,7 @@ public interface BaseService {
      */
     public TbCreditCardInfo findCardInfobyCcid(Long ccId);
 
+
     /**
      * 获取已出账单的12个月的（年月信息）
      * @param currentYear 当前年份

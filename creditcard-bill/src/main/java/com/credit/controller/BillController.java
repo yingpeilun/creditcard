@@ -34,7 +34,7 @@ public class BillController {
     private BillService billService;
 
     /**
-     * 前端账单查询
+     * 前端已出账单查询
      * @param pageNo 第几页
      * @param pageSize 显示几行
      * @param request 请求封装对象

@@ -45,7 +45,7 @@ public class BaseServiceImpl implements BaseService {
         vo.setCcId(ccId);
         return creditCardInfoMapper.selectOne(vo);
     }
-
+//-----------------------------------以下是其他业务方法-------------------------------------------
     /**
      * 获取已出账单的12个月的（年月信息）
      * @param currentYear 当前年份
