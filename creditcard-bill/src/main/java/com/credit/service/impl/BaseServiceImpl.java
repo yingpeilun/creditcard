@@ -142,16 +142,33 @@ public class BaseServiceImpl implements BaseService {
     /**
      * 日期转换：String => java.util.Date
      * @param sdf 日期格式对象
-     * @param shangshangBillDate 上上个月账单日的String类型
+     * @param Date 上上个月账单日的String类型
      * @return Date
      */
-    public Date getDate(SimpleDateFormat sdf, String shangshangBillDate) {
+    public Date getDate(SimpleDateFormat sdf, String Date) {
         Date shangshangbilldate1 = null;
         try {
-            shangshangbilldate1 = sdf.parse(shangshangBillDate);
+            shangshangbilldate1 = sdf.parse(Date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return shangshangbilldate1;
+    }
+
+    /**
+     * 查找上个月的（账单日+1）
+     * @param currentYear 当前年份
+     * @param currentMonth 当前月份
+     * @return String
+     */
+    public String getshangBillDate_1(int currentYear, int currentMonth) {
+        int shangMonth = currentMonth - 1;//上上个月
+        int year_2 = currentYear;//年份
+        if(shangMonth<= 0){
+            shangMonth = 12;
+            year_2 =- 1;
+        }
+        String shangshangmonth = getNum(shangMonth);
+        return year_2 +""+ shangshangmonth +"17";
     }
 }

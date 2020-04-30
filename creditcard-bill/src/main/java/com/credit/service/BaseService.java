@@ -62,8 +62,16 @@ public interface BaseService {
     /**
      * 日期转换：String => java.util.Date
      * @param sdf 日期格式对象
-     * @param shangshangBillDate 上上个月账单日的String类型
+     * @param Date 上上个月账单日的String类型
      * @return
      */
-    public Date getDate(SimpleDateFormat sdf, String shangshangBillDate);
+    public Date getDate(SimpleDateFormat sdf, String Date);
+
+    /**
+     * 查找上个月的（账单日+1）
+     * @param currentYear 当前年份
+     * @param currentMonth 当前月份
+     * @return String
+     */
+    public String getshangBillDate_1(int currentYear, int currentMonth);
 }

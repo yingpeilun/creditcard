@@ -109,6 +109,7 @@ public class BillController {
                 //多条件分页查询上月的账单明细
                 PageInfo<TbHistoryEverybill> EbillPageInfo = billService.selectOneMontheverybillhistory(shangbilldate, shangshangbilldate1, ccId, pageNo, pageSize);
                 model.addAttribute("ebpageinfo",EbillPageInfo);
+                return "已出账单查询页面";
             }
         }
         //无CId时
