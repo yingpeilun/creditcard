@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 客户管理：主页
+ */
 @Controller
 @RequestMapping("/")
 public class ClientController {
@@ -17,9 +20,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @RequestMapping(value = "/bill")
-    public String getClient(HttpServletRequest request){
-        return "";
-    }
+
 
 }
