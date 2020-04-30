@@ -108,7 +108,7 @@ public class BillController {
                 Date shangshangbilldate1 = baseService.getDate(sdf, shangshangBillDate);
                 //多条件分页查询上月的账单明细
                 PageInfo<TbHistoryEverybill> EbillPageInfo = billService.selectOneMontheverybillhistory(shangbilldate, shangshangbilldate1, ccId, pageNo, pageSize);
-                model.addAttribute("ebpageinfo",EbillPageInfo);
+                model.addAttribute("ebpageinfo",EbillPageInfo); //==> 账单明细
                 return "已出账单查询页面";
             }
         }
@@ -132,7 +132,7 @@ public class BillController {
         Date shangshangbilldate1 = baseService.getDate(sdf, shangshangBillDate);
         //多条件分页查询上月的账单明细
         PageInfo<TbHistoryEverybill> EbillPageInfo = billService.selectOneMontheverybillhistory(shangbilldate1, shangshangbilldate1, ccId1, pageNo, pageSize);
-        model.addAttribute("ebpageinfo",EbillPageInfo);
+        model.addAttribute("ebpageinfo",EbillPageInfo); //==> 账单明细
         return "已出账单查询页面";
     }
 

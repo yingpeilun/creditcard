@@ -2,7 +2,6 @@ package com.credit.service.impl;
 
 import com.credit.mapper.HistoryNotEveryBillMapper;
 import com.credit.mapper.HistorylNotMonthBillMapper;
-import com.credit.pojo.TbHistoryEverybill;
 import com.credit.pojo.TbHistoryNotEverybill;
 import com.credit.service.NotBillService;
 import com.github.pagehelper.PageHelper;
