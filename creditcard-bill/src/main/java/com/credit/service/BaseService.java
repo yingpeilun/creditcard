@@ -62,11 +62,10 @@ public interface BaseService {
 
     /**
      * 日期转换：String => java.util.Date
-     * @param sdf 日期格式对象
      * @param Date 上上个月账单日的String类型
      * @return
      */
-    public Date getDate(SimpleDateFormat sdf, String Date);
+    public Date getDate(String Date);
 
     /**
      * 查找上个月的（账单日+1）

@@ -48,6 +48,7 @@ public class BaseServiceImpl implements BaseService {
 //-----------------------------------以下是其他业务方法-------------------------------------------
     /**
      * 获取已出账单的12个月的（年月信息）
+     * @param currentMonth 当年月份
      * @param currentYear 当前年份
      * @param yearMonthlsit 用于装12个月的年月集合
      */
@@ -92,11 +93,13 @@ public class BaseServiceImpl implements BaseService {
                 Long repaidAmount = jo.getRepaidAmount(); //一张卡的需还款金额
                 String cardName = jo.getCardName();//卡名
                 Long cid = jo.getId();//获取卡片id主键（cid）
+
                 TbCreditCardInfo po = new TbCreditCardInfo();
                 po.setCcId(ccId);
                 po.setCardName(cardName);
                 po.setId(cid);
                 cardlsit.add(po);
+
                 sum =+ repaidAmount;//需还款总额
             }
         }else{
@@ -141,11 +144,11 @@ public class BaseServiceImpl implements BaseService {
 
     /**
      * 日期转换：String => java.util.Date
-     * @param sdf 日期格式对象
      * @param Date 上上个月账单日的String类型
      * @return Date
      */
-    public Date getDate(SimpleDateFormat sdf, String Date) {
+    public Date getDate(String Date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         Date shangshangbilldate1 = null;
         try {
             shangshangbilldate1 = sdf.parse(Date);

@@ -92,8 +92,8 @@ public class TestNotBillController {
         //(上月账单日+1)
         String currentBillDate = baseService.getshangBillDate_1(currentYear, currentMonth);
 
-        Date date1 = baseService.getDate(sdf, currentBillDate);
-        Date date2 = baseService.getDate(sdf, currentPayDate);
+        Date date1 = baseService.getDate(currentBillDate);
+        Date date2 = baseService.getDate(currentPayDate);
 
         PageInfo<TbHistoryNotEverybill> NotEbPageInfo = notBillService.selectOneMontheveryNotbillhistory(date1, date2, ccId, pageNo, pageSize);
         model.addAttribute("notebpageinfo",NotEbPageInfo);

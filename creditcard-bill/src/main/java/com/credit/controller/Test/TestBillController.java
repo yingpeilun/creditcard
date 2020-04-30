@@ -47,20 +47,25 @@ public class TestBillController {
             @RequestParam(value = "pageNo",defaultValue = "1" ) Integer pageNo,
             @RequestParam(value = "pageSize",defaultValue = "8" ) Integer pageSize,
             HttpServletRequest request, Model model,
-            @RequestParam("CId") Long CId){
+            @RequestParam("CId") Long CId)
+    {
         //*************账单汇总(需还款总额,显示卡号和卡名)**********
         HttpSession session = request.getSession();
         TbUser user = (TbUser) session.getAttribute("user");
         Long uid = user.getUid();
+
         //通过uid的查询所有卡片信息
         List<TbCreditCardSecurityInfo> cardIdList = baseService.findCardidlistbyUid(uid);
+
         if(cardIdList.isEmpty()){//没注册卡时跳回主页
             return "false";
         }
         //对象里用于装（卡号和卡名）
         List<TbCreditCardInfo> cardlsit = new ArrayList<TbCreditCardInfo>();
+
         //（计算还款总额和查找用户卡片）
         Long sum = baseService.getaLong(cardIdList, cardlsit);
+
         model.addAttribute("sum",sum);              //==> 需还款总额
         model.addAttribute("cardlsit",cardlsit);    //==> 卡号和卡名
 
@@ -86,7 +91,7 @@ public class TestBillController {
         // 点击账单查询默认：第一个卡号【cardlsit里的get（0）】；否则是所传卡号的
         // 通过（上个月账单日）、（卡号） 查找1个 （上个月的历史账单概要）
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
         // 有CId时
         for (int o = 0; o <cardlsit.size();o++ ){
             TbCreditCardInfo cardinfo = cardlsit.get(o);
@@ -98,14 +103,14 @@ public class TestBillController {
                 //获取当前上个月的账单日
                 String shangBillDate = baseService.getBillday(currentYear, currentMonth);
                 //日期转换
-                Date shangbilldate = baseService.getDate(sdf, shangBillDate);
+                Date shangbilldate = baseService.getDate(shangBillDate);
                 //查询上月账单概要
                 TbHistorylMonthbill vo = billService.selectOneMonthbillhistory(shangbilldate, ccId);
                 model.addAttribute("HistorylMonthbill",vo);     //==> 账单概要（通过CId确认哪张卡片）
                 //上上个月的（账单日+1）
                 String shangshangBillDate = baseService.getshangshangBillDate(currentYear, currentMonth);
                 //日期转换
-                Date shangshangbilldate1 = baseService.getDate(sdf, shangshangBillDate);
+                Date shangshangbilldate1 = baseService.getDate(shangshangBillDate);
                 //多条件分页查询上月的账单明细
                 PageInfo<TbHistoryEverybill> EbillPageInfo = billService.selectOneMontheverybillhistory(shangbilldate, shangshangbilldate1, ccId, pageNo, pageSize);
                 model.addAttribute("ebpageinfo",EbillPageInfo); //==> 账单明细
@@ -117,7 +122,7 @@ public class TestBillController {
         Long ccId1 = cardinfo1.getCcId();//卡号
         String shangBillDate1 = baseService.getBillday(currentYear, currentMonth);//上个月的账单日
         //日期转换
-        Date shangbilldate1 = baseService.getDate(sdf, shangBillDate1);
+        Date shangbilldate1 = baseService.getDate(shangBillDate1);
         //查询上月账单概要
         TbHistorylMonthbill vo1 = billService.selectOneMonthbillhistory(shangbilldate1, ccId1);
         model.addAttribute("HistorylMonthbill",vo1);     //==> 账单概要(默认的)
@@ -129,7 +134,7 @@ public class TestBillController {
         //上上个月的（账单日+1）
         String shangshangBillDate = baseService.getshangshangBillDate(currentYear, currentMonth);
         //日期转换
-        Date shangshangbilldate1 = baseService.getDate(sdf, shangshangBillDate);
+        Date shangshangbilldate1 = baseService.getDate(shangshangBillDate);
         //多条件分页查询上月的账单明细
         PageInfo<TbHistoryEverybill> EbillPageInfo = billService.selectOneMontheverybillhistory(shangbilldate1, shangshangbilldate1, ccId1, pageNo, pageSize);
         model.addAttribute("ebpageinfo",EbillPageInfo); //==> 账单明细
