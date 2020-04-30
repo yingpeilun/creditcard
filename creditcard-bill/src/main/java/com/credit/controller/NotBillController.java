@@ -48,7 +48,7 @@ public class NotBillController {
         //通过uid的查询所有卡片信息
         List<TbCreditCardSecurityInfo> cardIdList = baseService.findCardidlistbyUid(uid);
         if(cardIdList.isEmpty()){//没注册卡时跳回主页
-            return "主页面";
+            return "false";
         }
         //对象里用于装（卡号和卡名）
         List<TbCreditCardInfo> cardlsit = new ArrayList<TbCreditCardInfo>();
@@ -88,7 +88,7 @@ public class NotBillController {
 
         PageInfo<TbHistoryNotEverybill> NotEbPageInfo = notBillService.selectOneMontheveryNotbillhistory(date1, date2, ccId, pageNo, pageSize);
         model.addAttribute("notebpageinfo",NotEbPageInfo);
-        return "未出账单查询页面";
+        return "true";
     }
     /**
      * 处理日期int前面的无零的问题

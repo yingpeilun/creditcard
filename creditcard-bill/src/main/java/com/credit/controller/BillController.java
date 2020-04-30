@@ -55,7 +55,7 @@ public class BillController {
         //通过uid的查询所有卡片信息
         List<TbCreditCardSecurityInfo> cardIdList = baseService.findCardidlistbyUid(uid);
         if(cardIdList.isEmpty()){//没注册卡时跳回主页
-            return "主页面";
+            return "false";
         }
         //对象里用于装（卡号和卡名）
         List<TbCreditCardInfo> cardlsit = new ArrayList<TbCreditCardInfo>();
@@ -109,7 +109,7 @@ public class BillController {
                 //多条件分页查询上月的账单明细
                 PageInfo<TbHistoryEverybill> EbillPageInfo = billService.selectOneMontheverybillhistory(shangbilldate, shangshangbilldate1, ccId, pageNo, pageSize);
                 model.addAttribute("ebpageinfo",EbillPageInfo); //==> 账单明细
-                return "已出账单查询页面";
+                return "true";
             }
         }
         //无CId时
@@ -133,7 +133,7 @@ public class BillController {
         //多条件分页查询上月的账单明细
         PageInfo<TbHistoryEverybill> EbillPageInfo = billService.selectOneMontheverybillhistory(shangbilldate1, shangshangbilldate1, ccId1, pageNo, pageSize);
         model.addAttribute("ebpageinfo",EbillPageInfo); //==> 账单明细
-        return "已出账单查询页面";
+        return "true";
     }
 
     /**

@@ -23,7 +23,7 @@ public class BaseServiceImpl implements BaseService {
     private CreditCardInfoMapper creditCardInfoMapper;
 
     /**
-     * 查找下的所有卡号
+     * 查找用户下的所有卡号
      * @param uid
      * @return
      */
@@ -162,7 +162,7 @@ public class BaseServiceImpl implements BaseService {
      * @return String
      */
     public String getshangBillDate_1(int currentYear, int currentMonth) {
-        int shangMonth = currentMonth - 1;//上上个月
+        int shangMonth = currentMonth - 1;//上个月
         int year_2 = currentYear;//年份
         if(shangMonth<= 0){
             shangMonth = 12;
