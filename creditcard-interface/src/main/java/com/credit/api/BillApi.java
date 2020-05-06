@@ -1,9 +1,6 @@
 package com.credit.api;
 
-import com.credit.pojo.TbCreditCardInfo;
-import com.credit.pojo.TbCreditCardSecurityInfo;
-import com.credit.pojo.TbHistoryEverybill;
-import com.credit.pojo.TbHistorylMonthbill;
+import com.credit.pojo.*;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public interface BillApi {
+    /**********************************（ Bill ）****************************************/
     /**
      * 查找用户下的所有卡号(用户安全信息表)
      * @param uid
      * @return
      */
-    @PostMapping("/bill/findCardIdListByUid")
+    @PostMapping("/client/findCardIdListByUid")
     @ResponseBody
     public List<TbCreditCardSecurityInfo> findCardIdListByUid(@RequestParam("uid") Long uid);
 
@@ -26,7 +24,7 @@ public interface BillApi {
      * @param ccId
      * @return
      */
-    @PostMapping("/bill/findCardInfoByCcid")
+    @PostMapping("/client/findCardInfoByCcid")
     @ResponseBody
     public TbCreditCardInfo findCardInfoByCcid(@RequestParam("ccId") Long ccId);
 
@@ -67,4 +65,19 @@ public interface BillApi {
             @RequestBody Map<String, Object> map,
             @RequestParam("pageNo")Integer pageNo,
             @RequestParam("pageSize")Integer pageSize);
+
+    /*********************************（ NotBill ）*********************************/
+    /**
+     * 通过（上个月账单日+1）、（当月还款日-1）、（卡号）分页查找n个（当月的每笔历史账单明细）
+     *  s (上个月账单日+1)
+     *  p （当月还款日-1）
+     *  ccid 所选的卡号
+     * @param map s p ccid
+     * @param pageNo 第几页
+     * @param pageSize 要几行
+     * @return PageInfo pagehelper对象的PageInfo，方便分页
+     */
+    @PostMapping("/notbill/selectOneMonthEveryNotBillHistory")
+    @ResponseBody
+    public PageInfo<TbHistoryNotEverybill> selectOneMonthEveryNotBillHistory(Map<String,Object> map, Integer pageNo, Integer pageSize);
 }

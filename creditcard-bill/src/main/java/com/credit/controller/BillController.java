@@ -22,8 +22,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/")
 public class BillController {
-    @Autowired
-    private BaseService baseService;
 
     @Autowired
     private BillService billService;
