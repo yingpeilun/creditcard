@@ -22,7 +22,7 @@ public class ApplyCardController {
     @GetMapping("index")
     public String index(){
         System.out.println("我进来了");
-        return "main";
+        return "homePage";
     }
 
     /**
@@ -77,6 +77,6 @@ public class ApplyCardController {
         if(!boo){
             return "error";
         }
-        return "main";
+        return "homePage";
     }
 }
