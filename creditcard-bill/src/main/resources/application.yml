@@ -1,12 +1,20 @@
 server:
-  port: 8082
+  port: 8082  #8082
+
 spring:
   application:
-    name: applycard-service
+    name: bill-service
   datasource:
-    url: jdbc:mysql://localhost:3306/leyou?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
-    password: ab609609
+    url: jdbc:mysql://localhost:3306/carddatabase?useUnicode=true&characterEncoding=utf8
+    password: tiger
     username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+
 eureka:
   client:
     service-url:
@@ -14,5 +22,17 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 5      #设置心跳时间5秒
     lease-expiration-duration-in-seconds: 15  #设置过期时间15秒
+    hostname: 127.0.0.1 #或localhost
+
 mybatis:
   type-aliases-package: com.credit.pojo   #这个路径是interface下的实体类路径
+  config-location: classpath:mybatis/mybatis.cfg.xml   #mybatis_config配置文件
+  mapper-locations: classpath:mybatis/mapper/*.xml     #mybatis_mapper所有配置文件
+
+# PageHelper配置
+pagehelper:
+  offsetAsPageNum: true
+  rowBoundsWithCount: true
+  reasonable: true
+  returnPageInfo: true
+  params: count=countSql

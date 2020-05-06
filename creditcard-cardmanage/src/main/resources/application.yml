@@ -4,9 +4,9 @@ spring:
   application:
     name: cardmanage-service
   datasource:
-    url: jdbc:mysql://localhost:3306/leyou?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
-    password: ab609609
-    username: root
+    url: jdbc:mysql://localhost:3306/carddatabase?useUnicode=true&characterEncoding=utf8
+    password: root
+    username: tiger
 eureka:
   client:
     service-url:

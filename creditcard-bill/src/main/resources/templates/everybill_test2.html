@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="every" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>账单明细</h1>
+<span>最近过去的账单日的上月账单日&nbsp;至&nbsp;最近过去的账单日</span>:
+
+<table border="1" cellspacing="0" cellpadding="0" width="1000" >
+    <tr>
+        <th align="center">交易描述</th>
+        <th align="center">交易币种/金额</th>
+        <th align="center">交易日期（date）</th>
+        <th align="center">结算货币/金额</th>
+        <th align="center">入账日期（date）</th>
+    </tr>
+    <tr th:bgcolor="${st.count%2==0?'yellow':'gray'}" th:each="onebill,st:${pageinfo.list}">
+        <td align="center">[[${onebill.payInfo}]]</td>
+        <td align="center">[[${onebill.moneyType}]]/[[${#numbers.formatDecimal(onebill.payAmount,1,'COMMA',2,'POINT')}]]</td>
+        <td align="center">[[${#dates.format(onebill.payDate,'yyyy-MM-dd')}]]</td>
+        <td align="center">[[${onebill.moneyType}]]/[[${#numbers.formatDecimal(onebill.payAmount,1,'COMMA',2,'POINT')}]]</td>
+        <td align="center">[[${#dates.format(onebill.payDate,'yyyy-MM-dd')}]]</td>
+    </tr>
+</table>
+</body>
+</html>

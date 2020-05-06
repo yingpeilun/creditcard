@@ -1,0 +1,24 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.mapper.HistoryNotEveryBillMapper">
+
+    <resultMap id="ResultNotBillMap" type="com.credit.pojo.TbHistoryNotEverybill">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="cc_id" property="ccId" jdbcType="BIGINT" />
+        <result column="pay_info" property="payInfo" jdbcType="VARCHAR" />
+        <result column="money_type" property="moneyType" jdbcType="VARCHAR" />
+        <result column="pay_amount" property="payAmount" jdbcType="BIGINT" />
+        <result column="get_money_card" property="getMoneyCard" jdbcType="BIGINT" />
+        <result column="bill_date_num" property="billDateNum" jdbcType="BIGINT" />
+        <result column="bill_date" property="billDate"  />
+        <result column="pay_date_num" property="payDateNum" jdbcType="BIGINT" />
+        <result column="pay_date" property="payDate"  />
+    </resultMap>
+    <select id="getOneMonthEveryNotbillHistory" parameterType="java.util.Map" resultMap="ResultNotBillMap">
+        SELECT id,cc_id,pay_info,money_type,pay_amount,pay_date_num,get_money_card,pay_date,bill_date_num,bill_date
+        FROM tb_history_not_everybill
+        WHERE pay_date BETWEEN #{s} AND #{p} and cc_id = #{ccid}
+        ORDER BY pay_date DESC
+    </select>
+</mapper>

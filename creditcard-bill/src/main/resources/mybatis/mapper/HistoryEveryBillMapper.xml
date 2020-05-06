@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.mapper.HistoryEveryBillMapper">
+
+    <resultMap id="ResultBillMap" type="com.credit.pojo.TbHistoryEverybill">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="cc_id" property="ccId"  />
+        <result column="pay_info" property="payInfo"  />
+        <result column="money_type" property="moneyType"  />
+        <result column="pay_amount" property="payAmount"  />
+        <result column="pay_date_num" property="payDateNum"  />
+        <result column="get_money_card" property="getMoneyCard"  />
+        <result column="pay_date" property="payDate"  />
+        <result column="bill_date_num" property="billDateNum"  />
+        <result column="bill_date" property="billDate"  />
+        <result column="repay_date_num" property="repayDateNum"  />
+        <result column="repay_date" property="repayDate"  />
+    </resultMap>
+    <select id="getOneMonthEverybillHistory" parameterType="java.util.Map" resultMap="ResultBillMap">
+          SELECT id,cc_id,pay_info,money_type,pay_amount,pay_date_num,get_money_card,pay_date,bill_date_num,bill_date,repay_date_num,repay_date
+          FROM tb_history_everybill
+        <where>
+            <if test="s!=null&amp;&amp;ss!=null"> and pay_date BETWEEN #{ss} AND #{s} </if>
+            <if test="ccid!=null"> and cc_id = #{ccid} </if>
+        </where>
+          ORDER BY pay_date DESC
+    </select>
+</mapper>

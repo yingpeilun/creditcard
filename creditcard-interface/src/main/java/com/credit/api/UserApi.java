@@ -4,11 +4,13 @@ import com.credit.pojo.TbBasicInfo;
 import com.credit.pojo.TbCompanyInfo;
 import com.credit.pojo.TbContactInfo;
 import com.credit.pojo.TbUser;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
-@RequestMapping("user")
 public interface UserApi {
 
     /**
@@ -77,7 +79,7 @@ public interface UserApi {
      * @param companyInfo
      * @return
      */
-    @PostMapping("updateCompany")
+    @PostMapping("updateBasic")
     public Boolean updateCompany(TbCompanyInfo companyInfo);
 
     /**
@@ -93,6 +95,6 @@ public interface UserApi {
      * @param contactInfo
      * @return
      */
-    @PostMapping("updateContact")
+    @PostMapping("updateBasic")
     public Boolean updateBasic(TbContactInfo contactInfo);
 }
