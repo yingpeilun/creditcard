@@ -192,13 +192,17 @@ public class InstalmentService {
 
         Long billDateNum = infoOne.getBillDateNum();
         Long repayDateNum = info.getRepayDateNum();
+
         SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
         Date date1 = sdf.parse(billDateNum.toString());
         Date date2 = sdf.parse(repayDateNum.toString());
+
         DateTime dateTime1= new DateTime(date1);
         DateTime dateTime2= new DateTime(date2);
+
         String dateformat1=sdf.format(dateTime1.plusMonths(1).toDate());
         String dateformat2=sdf.format(dateTime2.plusMonths(1).toDate());
+
         Date date3 = sdf.parse(dateformat1);
         Date date4 = sdf.parse(dateformat2);
 
