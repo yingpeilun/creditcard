@@ -25,16 +25,7 @@ public class NotBillController {
     @Autowired
     private ClientService clientService;
 
-    /**
-     * 通过（上个月账单日+1）、（当月还款日-1）、（卡号）分页查找n个（当月的每笔历史账单明细）
-     *  s (上个月账单日+1)
-     *  p （当月还款日-1）
-     *  ccid 所选的卡号
-     * @param map s p ccid
-     * @param pageNo 第几页
-     * @param pageSize 要几行
-     * @return PageInfo pagehelper对象的PageInfo，方便分页
-     */
+
     /**
      * 通过（上个月账单日+1）、（当月还款日-1）、（卡号）分页查找n个（当月的每笔历史账单明细）
      *  s (上个月账单日+1)

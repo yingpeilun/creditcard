@@ -60,11 +60,6 @@
             <optional>true</optional>
             <scope>provided</scope>
         </dependency>
-        <!--thymeleaf模板-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
         <!--mybatis-spring依赖-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

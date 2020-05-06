@@ -9,12 +9,13 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @Service
 public class ApplyCardService {
 
-    @Autowired
+    @Resource
     private ApplyClient applyClient;
 
     @Autowired
