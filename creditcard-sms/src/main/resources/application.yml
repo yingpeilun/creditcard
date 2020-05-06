@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: sms-service
+  rabbitmq:
+    host: 127.0.0.1
+    username: card
+    password: card
+    virtual-host: /card
 eureka:
   client:
     service-url:

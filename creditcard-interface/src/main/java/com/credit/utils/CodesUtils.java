@@ -21,7 +21,9 @@ public class CodesUtils {
      * @return
      */
     public static Boolean validate(String inputPwd, String dataPwd) {
-        return BCrypt.checkpw(inputPwd, dataPwd);
+        boolean checkpw = BCrypt.checkpw(inputPwd, dataPwd);
+        System.out.println("checkpw:"+checkpw);
+        return checkpw;
     }
 
     /**

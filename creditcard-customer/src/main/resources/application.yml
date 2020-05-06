@@ -7,6 +7,17 @@ spring:
     url: jdbc:mysql://localhost:3306/leyou?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
     password: ab609609
     username: root
+  main:
+    allow-bean-definition-overriding: true
+  thymeleaf:
+    check-template-location: true
+    suffix: .html
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+    mode: HTML5
+    cache: false
+    prefix: classpath:/templates/
 eureka:
   client:
     service-url:

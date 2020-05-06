@@ -28,7 +28,7 @@ public class ApplyController {
      * @return
      */
     @PostMapping("insertBasic")
-    public ResponseEntity<Boolean> updateBasic(TbBasicInfo basicInfo){
+    public ResponseEntity<Boolean> insertBasic(TbBasicInfo basicInfo){
         Boolean boo = this.applyService.insertBasic(basicInfo);
         if(!boo){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
