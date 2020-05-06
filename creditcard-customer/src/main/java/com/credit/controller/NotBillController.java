@@ -39,7 +39,7 @@ public class NotBillController {
      * @param pageNo 第几页
      * @param pageSize 有多少行
      * @param CId 卡片的集合List的索引
-     * @return String notbill
+     * @return String notbill页面
      * @throws IOException
      */
     @RequestMapping("/notbill")
@@ -93,7 +93,7 @@ public class NotBillController {
         map.put("ccid", ccId);
         PageInfo<TbHistoryNotEverybill> enbpageInfo = billFeignClient.selectOneMonthEveryNotBillHistory(map, pageNo, pageSize);//【分页显示当月未出账单明细】
         System.out.println(enbpageInfo);
-        if (enbpageInfo.getPageSize()==0) System.out.println("enbpageInfo is null");
+        if (enbpageInfo.getPages()==0) System.out.println("enbpageInfo is null");
         model.addAttribute("pageInfo", enbpageInfo);                        // ==> 账单明细
         return "notbill";
     }
@@ -106,7 +106,7 @@ public class NotBillController {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);//当前年份
         int month = (c.get(Calendar.MONTH)+1);//当前月份
-        int currentDay = c.get(Calendar.DAY_OF_WEEK);//当前日份
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
         if (currentDay < 16){
             month -= 1;
             if(month <= 0){
@@ -125,7 +125,7 @@ public class NotBillController {
         Calendar c = Calendar.getInstance();
         int currentYear = c.get(Calendar.YEAR);//当前年份
         int currentMonth = (c.get(Calendar.MONTH)+1);//当前月份
-        int currentDay = c.get(Calendar.DAY_OF_WEEK);//当前日份
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
         if (currentDay > 4){
             currentMonth += 1;
             if(currentMonth <= 0){

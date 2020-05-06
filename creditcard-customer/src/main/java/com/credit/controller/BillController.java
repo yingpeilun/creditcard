@@ -84,7 +84,7 @@ public class BillController {
         Calendar c = Calendar.getInstance();
         int currentYear = c.get(Calendar.YEAR);//当前年份
         int currentMonth = (c.get(Calendar.MONTH)+1);//当前月份
-        int currentDay = c.get(Calendar.DAY_OF_WEEK);//当前日份
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
         if (currentDay > 4){
             currentMonth += 1;
             if(currentMonth <= 0){
@@ -158,7 +158,7 @@ public class BillController {
             map.put("ss", shangshangbilldate);
             map.put("ccid", ccId);
             PageInfo<TbHistoryEverybill> ebpageInfo = billFeignClient.selectOneMonthEveryBillHistory(map, pageNo, pageSize);//【分页显示最近上月账单明细】
-            if (ebpageInfo == null) System.out.println("ebpageInfo is null");
+            if (ebpageInfo.getPages()==0) System.out.println("ebpageInfo is null");
             model.addAttribute("shangBillDate", shangbilldate);             // ==> 上个月账单日
             model.addAttribute("shangShangBillDate", shangshangbilldate);   // ==>（上上个月账单日+1）
             model.addAttribute("pageInfo", ebpageInfo);                     // ==> 账单明细
@@ -266,7 +266,7 @@ public class BillController {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);//当前年份
         int month = (c.get(Calendar.MONTH)+1);//当前月份
-        int currentDay = c.get(Calendar.DAY_OF_WEEK);//当前日份
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
         if (currentDay < 16){
             month -= 1;
             if(month <= 0){
@@ -286,7 +286,7 @@ public class BillController {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);//当前年份
         int month = (c.get(Calendar.MONTH)+1);//当前月份
-        int currentDay = c.get(Calendar.DAY_OF_WEEK);//当前日份
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
         if (currentDay < 16){
             for (int p = 0; p < 2; p++) {
                 month -= 1;
