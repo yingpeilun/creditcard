@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en_notbill" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>未出账单查询</title>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        /*点击的字*/
+        .nowpage_on{
+            font-size: 18px;
+            text-decoration: none;
+            color: red;
+            font-weight: bold;
+            cursor: text;
+
+        }
+        /*没点击的字*/
+        .nowpage_off{
+            font-size: 16px;
+            text-decoration: none;
+            color: gray;
+            font-weight: bold;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline
+        }
+    </style>
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.js}"></script>
+    <script type="text/javascript">
+        function gopage(nowpage){
+            var allpage = parseInt($("#allpage").val());
+            if(parseInt(nowpage) < 1){
+                alert("已经是首页了");
+            }else if(parseInt(nowpage) > allpage){
+                alert("已经是最后一页了");
+            }else{
+                form_1.pageNo.value = nowpage;
+                form_1.submit();
+            }
+        }
+    </script>
 </head>
 <body>
-notbill
+<form id="form_1" name="form_1" action="../bill" method="post">
+<h3>选择卡片：</h3>
+<table border="1" cellspacing="0" cellpadding="0" width="1000" >
+    <tr th:bgcolor="${st.count%2==0?'yellow':'gray'}" th:each="card,st:${cardList}">
+        <td align="center"><input name="CId" type="radio" th:value="${(st.count)-1}" th:checked="${(st.count)-1==CId?true:false}" onchange="gopage('1')"/></td>
+        <td>第 [[${st.count}]] 张</td>
+        <td>卡号：[[${#strings.substring(card.ccId,0,4)+'****'+#strings.substring(card.ccId,12,16)}]]</td>
+        <td>卡名：[[${card.cardName}]]</td>
+    </tr>
+</table>
+<input type="hidden" th:value="${pageInfo.pageNum}" name="pageNo" id="pageNo" />
+</form>
+<input type="hidden" th:value="${(pageInfo.pages)==0?1:pageInfo.pages}" name="allpage" id="allpage" />
+<h3>账单明细：</h3>
+时间段：[[${#dates.format(shangBillDate,'yyyy-MM-dd')}]]至[[${#dates.format(currentPayDate,'yyyy-MM-dd')}]]
+<table border="1" cellspacing="0" cellpadding="0" width="1000" >
+    <tr>
+        <th align="center">交易描述</th>
+        <th align="center">交易币种/金额</th>
+        <th align="center">交易日期（date）</th>
+        <th align="center">结算货币/金额</th>
+        <th align="center">入账日期（date）</th>
+    </tr>
+    <tr th:if="${pageInfo.pageNum == 0}">
+        <td align="center" colspan="5">暂时没有交易明细！</td>
+    </tr>
+    <tr th:if="${pageInfo.pageNum != 0}" th:bgcolor="${st.count%2==0?'yellow':'gray'}" th:each="onebill,st:${pageInfo.list}">
+        <td align="center">[[${onebill.payInfo}]]</td>
+        <td align="center">[[${onebill.moneyType}]]/[[${#numbers.formatDecimal(onebill.payAmount,1,'COMMA',2,'POINT')}]]</td>
+        <td align="center">[[${#dates.format(onebill.payDate,'yyyy-MM-dd')}]]</td>
+        <td align="center">[[${onebill.moneyType}]]/[[${#numbers.formatDecimal(onebill.payAmount,1,'COMMA',2,'POINT')}]]</td>
+        <td align="center">[[${#dates.format(onebill.payDate,'yyyy-MM-dd')}]]</td>
+    </tr>
+</table>
+<input type="button" value="首页" th:disabled="${pageInfo.pageNum==1?true:false }"   onclick="gopage('1')" />
+<input type="button" value="上一页" th:disabled="${pageInfo.pageNum==1?true:false }"  th:onclick="'javascript:gopage('+${(pageInfo.pageNum)-1}+');'" />
+<!-- start -->
+<a th:if="${pageInfo.pageNum>3}" href="javascript:;"  th:onclick="'javascript:gopage('+${(pageInfo.pageNum)-3 }+');'" class="nowpage_off" >...</a>
+<a th:if="${pageInfo.pageNum>2}" href="javascript:;"  th:onclick="'javascript:gopage('+${(pageInfo.pageNum)-2 }+');'"  class="nowpage_off" >[[${pageInfo.pageNum-2 }]]</a>
+<a th:if="${pageInfo.pageNum>1}" href="javascript:;" th:onclick="'javascript:gopage('+${(pageInfo.pageNum)-1 }+');'"  class="nowpage_off" >[[${pageInfo.pageNum-1 }]]</a>
+<a href="javascript:;" class="nowpage_on" >[[${pageInfo.pageNum}]]</a>
+<a th:if="${pageInfo.pageNum<pageInfo.pages}" href="javascript:;"  th:onclick="'javascript:gopage('+${(pageInfo.pageNum)+1 }+');'"  class="nowpage_off" >[[${pageInfo.pageNum+1}]]</a>
+<a th:if="${((pageInfo.pageNum)+1)<pageInfo.pages}" href="javascript:;"  th:onclick="'javascript:gopage('+${(pageInfo.pageNum)+2 }+');'" class="nowpage_off" >[[${pageInfo.pageNum+2}]]</a>
+<a th:if="${((pageInfo.pageNum)+2)<pageInfo.pages}" href="javascript:;"  th:onclick="'javascript:gopage('+${(pageInfo.pageNum)+3 }+');'" class="nowpage_off" >...</a>
+<!-- end -->
+<input type="button" value="下一页" th:disabled="${pageInfo.pageNum==pageInfo.pages?true:false }" th:onclick="'javascript:gopage('+${(pageInfo.pageNum)+1}+');'" />
+<input type="button" value="尾页" th:disabled="${pageInfo.pageNum==pageInfo.pages?true:false }" th:onclick="'javascript:gopage('+${pageInfo.pages}+');'" />
 </body>
 </html>

@@ -21,6 +21,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 未出账查询
+ */
 @Controller
 @RequestMapping("/")
 public class NotBillController {
@@ -28,6 +31,17 @@ public class NotBillController {
     @Autowired
     private BillFeignClient billFeignClient;
 
+    /**
+     * 未出账查询
+     * @param request 请求对象
+     * @param response 响应对象
+     * @param model 传输数据给页面的对象
+     * @param pageNo 第几页
+     * @param pageSize 有多少行
+     * @param CId 卡片的集合List的索引
+     * @return String notbill
+     * @throws IOException
+     */
     @RequestMapping("/notbill")
     public String getWeiChuBill(HttpServletRequest request, HttpServletResponse response, Model model,
            @RequestParam(value = "pageNo",defaultValue = "1" ) Integer pageNo,
@@ -60,12 +74,14 @@ public class NotBillController {
             cardList.add(po);
         }
         model.addAttribute("cardList",cardList);                            //==> 卡号和卡名
+
         TbCreditCardInfo cardinfo = cardList.get(CId);//默认第一张卡
         Long ccId = cardinfo.getCcId();//卡号
+        /****************************************（最近还款日-1）******************************************/
         String currentPayDate_jian1 = getStringCurrentPayDate();//（最近还款日-1）(String)
         Date currentpaydate = StringToDate(currentPayDate_jian1);//日期转换 --> (数据库的账单日的时分秒必须是0)
         model.addAttribute("currentPayDate",currentpaydate);                // ==> 最近还款日
-
+        /****************************************(最近上月账单日+1）****************************************/
         String shangBillDate_jia1 = getshangBillday();//最近上月（账单日+1）(String)
         Date shangbilldate = StringToDate(shangBillDate_jia1);//日期转换 --> (数据库的账单日的时分秒必须是0)
         model.addAttribute("shangBillDate", shangbilldate);                 // ==> 最近上月的（账单日+1）
