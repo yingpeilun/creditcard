@@ -4,15 +4,15 @@
 <mapper namespace="com.credit.mapper.HistoryNotEveryBillMapper">
 
     <resultMap id="ResultNotBillMap" type="com.credit.pojo.TbHistoryNotEverybill">
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="cc_id" property="ccId" jdbcType="BIGINT" />
-        <result column="pay_info" property="payInfo" jdbcType="VARCHAR" />
-        <result column="money_type" property="moneyType" jdbcType="VARCHAR" />
-        <result column="pay_amount" property="payAmount" jdbcType="BIGINT" />
-        <result column="get_money_card" property="getMoneyCard" jdbcType="BIGINT" />
-        <result column="bill_date_num" property="billDateNum" jdbcType="BIGINT" />
+        <id column="id" property="id" />
+        <result column="cc_id" property="ccId"  />
+        <result column="pay_info" property="payInfo"  />
+        <result column="money_type" property="moneyType"  />
+        <result column="pay_amount" property="payAmount"  />
+        <result column="get_money_card" property="getMoneyCard"  />
+        <result column="bill_date_num" property="billDateNum"  />
         <result column="bill_date" property="billDate"  />
-        <result column="pay_date_num" property="payDateNum" jdbcType="BIGINT" />
+        <result column="pay_date_num" property="payDateNum"  />
         <result column="pay_date" property="payDate"  />
     </resultMap>
     <select id="getOneMonthEveryNotbillHistory" parameterType="java.util.Map" resultMap="ResultNotBillMap">

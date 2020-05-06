@@ -77,6 +77,7 @@ public class NotBillController {
 
         TbCreditCardInfo cardinfo = cardList.get(CId);//默认第一张卡
         Long ccId = cardinfo.getCcId();//卡号
+        model.addAttribute("CId",CId);                                      // ==> 卡片编号
         /****************************************（最近还款日-1）******************************************/
         String currentPayDate_jian1 = getStringCurrentPayDate();//（最近还款日-1）(String)
         Date currentpaydate = StringToDate(currentPayDate_jian1);//日期转换 --> (数据库的账单日的时分秒必须是0)
@@ -92,7 +93,7 @@ public class NotBillController {
         map.put("ccid", ccId);
         PageInfo<TbHistoryNotEverybill> enbpageInfo = billFeignClient.selectOneMonthEveryNotBillHistory(map, pageNo, pageSize);//【分页显示当月未出账单明细】
         System.out.println(enbpageInfo);
-        if (enbpageInfo == null) System.out.println("enbpageInfo is null");
+        if (enbpageInfo.getPageSize()==0) System.out.println("enbpageInfo is null");
         model.addAttribute("pageInfo", enbpageInfo);                        // ==> 账单明细
         return "notbill";
     }

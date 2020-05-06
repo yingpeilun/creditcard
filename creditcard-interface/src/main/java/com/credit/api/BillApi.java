@@ -79,5 +79,5 @@ public interface BillApi {
      */
     @PostMapping("/notbill/selectOneMonthEveryNotBillHistory")
     @ResponseBody
-    public PageInfo<TbHistoryNotEverybill> selectOneMonthEveryNotBillHistory(Map<String,Object> map, Integer pageNo, Integer pageSize);
+    public PageInfo<TbHistoryNotEverybill> selectOneMonthEveryNotBillHistory(@RequestBody Map<String,Object> map,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
 }
