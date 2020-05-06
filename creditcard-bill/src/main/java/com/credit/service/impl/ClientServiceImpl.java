@@ -19,7 +19,7 @@ public class ClientServiceImpl implements ClientService {
     private CreditCardInfoMapper creditCardInfoMapper;
 
     /**
-     * 查找用户下的所有卡号
+     * 查找用户下的所有卡号(用户安全信息表)
      * @param uid
      * @return
      */
@@ -31,7 +31,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     /**
-     * 通过卡号ccid查找卡片信息
+     * 通过卡号ccid查找卡片信息（信用卡信息表）
      * @param ccId
      * @return
      */

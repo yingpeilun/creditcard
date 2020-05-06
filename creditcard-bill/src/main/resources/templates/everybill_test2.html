@@ -16,13 +16,13 @@
         <th align="center">结算货币/金额</th>
         <th align="center">入账日期（date）</th>
     </tr>
-        <tr th:bgcolor="${st.count%2==0?'yellow':'gray'}" th:each="onebill,st:${pageinfo.list}">
-            <td align="center">[[${onebill.payInfo}]]</td>
-            <td align="center">[[${onebill.moneyType}]]/[[${#numbers.formatDecimal(onebill.payAmount,1,'COMMA',2,'POINT')}]]</td>
-            <td align="center">[[${#dates.format(onebill.payDate,'yyyy-MM-dd')}]]</td>
-            <td align="center">[[${onebill.moneyType}]]/[[${#numbers.formatDecimal(onebill.payAmount,1,'COMMA',2,'POINT')}]]</td>
-            <td align="center">[[${#dates.format(onebill.payDate,'yyyy-MM-dd')}]]</td>
-        </tr>
+    <tr th:bgcolor="${st.count%2==0?'yellow':'gray'}" th:each="onebill,st:${pageinfo.list}">
+        <td align="center">[[${onebill.payInfo}]]</td>
+        <td align="center">[[${onebill.moneyType}]]/[[${#numbers.formatDecimal(onebill.payAmount,1,'COMMA',2,'POINT')}]]</td>
+        <td align="center">[[${#dates.format(onebill.payDate,'yyyy-MM-dd')}]]</td>
+        <td align="center">[[${onebill.moneyType}]]/[[${#numbers.formatDecimal(onebill.payAmount,1,'COMMA',2,'POINT')}]]</td>
+        <td align="center">[[${#dates.format(onebill.payDate,'yyyy-MM-dd')}]]</td>
+    </tr>
 </table>
 </body>
 </html>

@@ -5,6 +5,7 @@ import com.credit.pojo.TbCreditCardSecurityInfo;
 import com.credit.pojo.TbHistoryNotEverybill;
 import com.credit.pojo.TbUser;
 import com.credit.service.BaseService;
+import com.credit.service.ClientService;
 import com.credit.service.NotBillService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,6 +35,9 @@ public class TestNotBillController {
 
     @Autowired
     private BaseService baseService;
+
+    @Autowired
+    private ClientService clientService;
 
     /**
      * 前端未出账单查询
@@ -55,7 +60,7 @@ public class TestNotBillController {
         TbUser user = (TbUser) session.getAttribute("user");
         Long uid = user.getUid();
         //通过uid的查询所有卡片信息
-        List<TbCreditCardSecurityInfo> cardIdList = baseService.findCardidlistbyUid(uid);
+        List<TbCreditCardSecurityInfo> cardIdList = clientService.findCardidlistbyUid(uid);
         if(cardIdList.isEmpty()){//没注册卡时跳回主页
             return "false";
         }
@@ -65,7 +70,7 @@ public class TestNotBillController {
             for (int i = 0; i < cardIdList.size(); i++) {
                 TbCreditCardSecurityInfo vo = cardIdList.get(i);
                 Long ccId = vo.getCcId();//卡号
-                TbCreditCardInfo jo = baseService.findCardInfobyCcid(ccId);
+                TbCreditCardInfo jo = clientService.findCardInfobyCcid(ccId);
                 String cardName = jo.getCardName();//卡名
                 Long cid = jo.getId();//获取卡片id主键（cid）
                 TbCreditCardInfo po = new TbCreditCardInfo();
@@ -90,15 +95,18 @@ public class TestNotBillController {
         //(最近还款日-1)
         String currentPayDate = currentYear +""+ dangmonth +"03";
         //(上月账单日+1)
-        String currentBillDate = baseService.getshangBillDate_1(currentYear, currentMonth);
+        String currentBillDate = getshangBillDate_1(currentYear, currentMonth);
 
-        Date date1 = baseService.getDate(currentBillDate);
-        Date date2 = baseService.getDate(currentPayDate);
+        Date date1 = getDate(currentBillDate);
+        Date date2 = getDate(currentPayDate);
 
         PageInfo<TbHistoryNotEverybill> NotEbPageInfo = notBillService.selectOneMontheveryNotbillhistory(date1, date2, ccId, pageNo, pageSize);
         model.addAttribute("notebpageinfo",NotEbPageInfo);
         return "true";
     }
+
+
+
     /**
      * 处理日期int前面的无零的问题
      * @param num 原数
@@ -108,5 +116,36 @@ public class TestNotBillController {
         return num > 9 ? "" + num : "0" + num;
     }
 
+    /**
+     * 查找上个月的（账单日+1）
+     * @param currentYear 当前年份
+     * @param currentMonth 当前月份
+     * @return String
+     */
+    public String getshangBillDate_1(int currentYear, int currentMonth) {
+        int shangMonth = currentMonth - 1;//上个月
+        int year_2 = currentYear;//年份
+        if(shangMonth<= 0){
+            shangMonth = 12;
+            year_2 =- 1;
+        }
+        String shangshangmonth = getNum(shangMonth);
+        return year_2 +""+ shangshangmonth +"17";
+    }
 
+    /**
+     * 日期转换：String => java.util.Date
+     * @param Date 上上个月账单日的String类型
+     * @return Date
+     */
+    public Date getDate(String Date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Date shangshangbilldate1 = null;
+        try {
+            shangshangbilldate1 = sdf.parse(Date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return shangshangbilldate1;
+    }
 }

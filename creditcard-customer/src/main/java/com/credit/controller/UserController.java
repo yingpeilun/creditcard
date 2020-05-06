@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     private UserFeignClient userFeignClient;
 
-    @GetMapping("/index.thml")
+    @GetMapping("/index.html")
     private String mian(){
         return "index";
     }

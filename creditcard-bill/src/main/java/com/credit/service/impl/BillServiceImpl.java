@@ -1,14 +1,12 @@
 package com.credit.service.impl;
 
 import com.credit.mapper.*;
-import com.credit.pojo.TbCreditCardInfo;
 import com.credit.pojo.TbHistoryEverybill;
 import com.credit.pojo.TbHistorylMonthbill;
 import com.credit.service.BillService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -26,34 +24,44 @@ public class BillServiceImpl implements BillService {
     private HistorylMonthBillMapper historylMonthBillMapper;
 
     /**
-     * 通过（上个月账单日）、（卡号） 查找1个 （上个月的历史账单概要）
-     * @param OneMonthbillday 上个月账单日
+     * 通过（已出月账单日）、（卡号） 查找1个 （月历史账单概要）
+     * @param oneMonthbillday 上个月账单日
      * @param ccid 卡号
      * @return
      */
-    public TbHistorylMonthbill selectOneMonthbillhistory(Date OneMonthbillday, Long ccid){
+    public TbHistorylMonthbill selectOneMonthbillhistory(Date oneMonthbillday, Long ccid){
         TbHistorylMonthbill vo = new TbHistorylMonthbill();
-        vo.setBillDate(OneMonthbillday);
+        vo.setBillDate(oneMonthbillday);
         vo.setCcId(ccid);
         return historylMonthBillMapper.selectOne(vo);
     }
 
     /**
-     * 通过（上个月账单日）、（上上个月账单日-1）、（卡号）分页查找n个（上个月的每笔历史账单明细）
-     * @param s 上个月账单日
-     * @param ss （上上个月账单日-1）
-     * @param ccid 所选的卡号
+     * 通过（已出月账单日）、（卡号） 查找1个 （月历史账单概要）
+     * @param oneMonthbillday 上个月账单日
+     * @param ccid 卡号
+     * @return
+     */
+    public TbHistorylMonthbill selectOneMonthbillhistory(Long oneMonthbillday, Long ccid){
+        TbHistorylMonthbill vo = new TbHistorylMonthbill();
+        vo.setBillDateNum(oneMonthbillday);
+        vo.setCcId(ccid);
+        return historylMonthBillMapper.selectOne(vo);
+    }
+
+    /**
+     * 通过（最近上月账单日）、（最近上上月账单日-1）、（卡号）分页查找n个（最近上月的每笔历史账单明细）
+     * s （上上个月账单日+1）
+     * ss 上个月账单日
+     * ccid 所选的卡号
+     * @param map s ss ccid
      * @param pageNo 第几页
      * @param pageSize 要几行
      * @return PageInfo pagehelper对象的PageInfo，方便分页
      */
-    public PageInfo<TbHistoryEverybill> selectOneMontheverybillhistory(Date s, Date ss, Long ccid, Integer pageNo, Integer pageSize){
+    public PageInfo<TbHistoryEverybill> selectOneMontheverybillhistory(Map<String,Object> map, Integer pageNo, Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
-        Map<String,Object> map= new HashMap<String,Object>();
-        map.put("s",s);
-        map.put("ss",ss);
-        map.put("ccid",ccid);
-        List<TbHistoryEverybill> list = this.getOneMonthEverybillHistory(map);
+        List<TbHistoryEverybill> list = historyEveryBillMapper.getOneMonthEverybillHistory(map);
         return new PageInfo<>(list);
     }
 

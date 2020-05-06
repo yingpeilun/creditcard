@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Table(name = "tb_history_monthbill")
+@Table(name = "tb_historyl_monthbill")
 public class TbHistorylMonthbill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
