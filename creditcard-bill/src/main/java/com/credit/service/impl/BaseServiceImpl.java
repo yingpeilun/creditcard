@@ -95,7 +95,7 @@ public class BaseServiceImpl implements BaseService {
         int shangYear = currentYear;//年份
         if(shangMonth <= 0){
             shangMonth = 12;
-            shangYear =- 1;
+            shangYear -= 1;
         }
         String shangmonth = getNum(shangMonth);
         return shangYear +""+ shangmonth +"16";
@@ -112,7 +112,7 @@ public class BaseServiceImpl implements BaseService {
         int year_2 = currentYear;//年份
         if(shangMonth<= 0){
             shangMonth = 12;
-            year_2 =- 1;
+            year_2 -= 1;
         }
         String shangshangmonth = getNum(shangMonth);
         return year_2 +""+ shangshangmonth +"17";
@@ -129,7 +129,7 @@ public class BaseServiceImpl implements BaseService {
         int year_1 = currentYear;//年份
         if(shangshangMonth<= 0){
             shangshangMonth = 12;
-            year_1 =- 1;
+            year_1 -= 1;
         }
         String shangshangmonth = getNum(shangshangMonth);
         return year_1 +""+ shangshangmonth +"17";
