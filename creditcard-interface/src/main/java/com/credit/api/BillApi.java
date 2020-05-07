@@ -79,5 +79,17 @@ public interface BillApi {
      */
     @PostMapping("/notbill/selectOneMonthEveryNotBillHistory")
     @ResponseBody
-    public PageInfo<TbHistoryNotEverybill> selectOneMonthEveryNotBillHistory(Map<String,Object> map, Integer pageNo, Integer pageSize);
+    public PageInfo<TbHistoryNotEverybill> selectOneMonthEveryNotBillHistory(@RequestBody Map<String,Object> map,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
+
+    /**
+     * 通过（上个月账单日+1）、（当月还款日-1）、（卡号）查找n个（当月的每笔历史账单明细）
+     *  s (上个月账单日+1)
+     *  p （当月还款日-1）
+     *  ccid 所选的卡号
+     * @param map s p ccid
+     * @return List<TbHistoryNotEverybill>
+     */
+    @PostMapping("/notbill/getOneMonthEveryNotBillHistory")
+    @ResponseBody
+    public List<TbHistoryNotEverybill> getOneMonthEveryNotBillHistory(@RequestBody Map<String,Object> map);
 }
