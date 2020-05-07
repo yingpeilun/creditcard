@@ -85,15 +85,7 @@ public class BillController {
         int currentYear = c.get(Calendar.YEAR);//当前年份
         int currentMonth = (c.get(Calendar.MONTH)+1);//当前月份
         int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
-        if (currentDay > 4){
-            currentMonth += 1;
-            if(currentMonth >= 13){
-                currentMonth = 12;
-                currentYear += 1;
-            }
-        }
-        String dangmonth = getNum(currentMonth);//（处理数字，格式：两位数）
-        String currentPayDate = currentYear +"年 "+ dangmonth +"月 04日";//最近还款日
+        String currentPayDate = getStringZuijinRepayDate(c);//最近还款日
         model.addAttribute("currentPayDate",currentPayDate);           // ==> 最近还款日
         /************************** 4. 遍历出最近已出账单的12个月的年月信息**************************/
         List<String> yearMonthList = new ArrayList<>();
@@ -189,6 +181,21 @@ public class BillController {
             model.addAttribute("pageInfo", ebpageInfo);                        // ==> 账单明细
         }
         return "bill";
+    }
+
+    private String getStringZuijinRepayDate(Calendar c) {
+        int cYear = c.get(Calendar.YEAR);//当前年份
+        int cMonth = (c.get(Calendar.MONTH)+1);//当前月份
+        int cDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
+        if (cDay > 4){
+            cMonth += 1;
+            if(cMonth >= 13){
+                cMonth = 12;
+                cYear += 1;
+            }
+        }
+        String dangmonth = getNum(cMonth);//（处理数字，格式：两位数）
+        return cYear +"年 "+ dangmonth +"月 04日";
     }
 
     /**
