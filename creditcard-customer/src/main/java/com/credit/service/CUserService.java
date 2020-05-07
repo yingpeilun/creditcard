@@ -5,13 +5,14 @@ import com.credit.pojo.TbUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class CUserService {
 
-    @Autowired
+    @Resource
     private UserClient userClient;
 
     /**
