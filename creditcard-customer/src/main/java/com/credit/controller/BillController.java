@@ -87,7 +87,7 @@ public class BillController {
         int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
         if (currentDay > 4){
             currentMonth += 1;
-            if(currentMonth <= 0){
+            if(currentMonth >= 13){
                 currentMonth = 12;
                 currentYear += 1;
             }
