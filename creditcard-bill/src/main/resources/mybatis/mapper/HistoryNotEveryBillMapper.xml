@@ -18,7 +18,10 @@
     <select id="getOneMonthEveryNotbillHistory" parameterType="java.util.Map" resultMap="ResultNotBillMap">
         SELECT id,cc_id,pay_info,money_type,pay_amount,pay_date_num,get_money_card,pay_date,bill_date_num,bill_date
         FROM tb_history_not_everybill
-        WHERE pay_date BETWEEN #{s} AND #{p} and cc_id = #{ccid}
+        <where>
+            <if test="s!=null&amp;&amp;p!=null"> and pay_date BETWEEN #{s} AND #{p} </if>
+            <if test="ccid!=null"> and cc_id = #{ccid} </if>
+        </where>
         ORDER BY pay_date DESC
     </select>
 </mapper>
