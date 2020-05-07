@@ -90,6 +90,7 @@
     本期未还金额：[[${#numbers.formatDecimal(currentRengRepaid,1,'COMMA',2,'POINT')}]]&nbsp;&nbsp;
     到期还款日：[[${#dates.format(HistoryMonthBill.repayDate,'yyyy年MM月dd日')}]]
 </p>
+
 <p th:if="${ymi != yearMonthIndex&&HistoryMonthBill==null}">
     [[${#strings.substring(yearMonthIndex,0,4)+'年'+#strings.substring(yearMonthIndex,4,6)+'月'}]]
     应还款金额：[[${#numbers.formatDecimal(0,1,'COMMA',2,'POINT')}]]&nbsp;&nbsp;

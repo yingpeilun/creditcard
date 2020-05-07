@@ -17,7 +17,7 @@ public interface ApplyApi {
      * @return
      */
     @PostMapping("insertBasic")
-    public Boolean updateBasic(TbBasicInfo basicInfo);
+    public Boolean insertBasic(TbBasicInfo basicInfo);
 
     /**
      * 新增公司信息

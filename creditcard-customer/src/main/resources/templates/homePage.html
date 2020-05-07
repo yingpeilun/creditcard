@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>中信信用卡</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+
+<!-- 你的HTML代码 -->
+<div>
+    <ul class="layui-nav">
+        <li class="layui-nav-item layui-this"><a href="" style="font-size: 17px">我的账户</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">账单查询</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">信用卡还款</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">分期业务</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">卡片管理</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">申请卡片</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">客户信息管理</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">设置管理</a></li>
+        <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img" style="font-size: 17px">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;" style="font-size: 15px">修改信息</a></dd>
+                <dd><a href="javascript:;" style="font-size: 15px">安全管理</a></dd>
+                <dd><a href="javascript:;" style="font-size: 15px">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+<div>
+    <div class="layui-carousel" id="test1">
+        <div carousel-item style="height: 450px">
+            <div><img src="http://www.citicbank.com/largeimage/202004/P020200430636000756986.png"></div>
+            <div><img src="http://www.citicbank.com/largeimage/202003/P020200410652849522951.jpg"></div>
+            <div><img src="http://www.citicbank.com/largeimage/202001/P020200401378790841099.jpg"></div>
+            <div><img src="http://www.citicbank.com/largeimage/202004/P020200430373640934144.jpg"></div>
+            <div><img src="http://www.citicbank.com/largeimage/202004/P020200430514584270025.jpg"></div>
+        </div>
+    </div>
+    <!-- 条目中可以是任意内容，如：<img src=""> -->
+</div>
+<div style="height: 200px">
+
+</div>
+<div >
+    <div class="layui-card" style="width: 500px;float: left;margin-left: 235px">
+        <div class="layui-card-header" style="margin:15px 15px 15px 15px;">
+            <span style="font-size: 20px">中信腾讯王卡信用卡金卡</span>
+        </div>
+        <div class="layui-card-body" style="margin:15px 15px 15px 15px;">
+            <span style="font-size: 20px">卡号：777777777777777777777</span>
+        </div>
+        <div class="layui-card-body" >
+            <div style="float: left;margin:15px 15px 15px 15px;">
+                <span style="font-size: 20px">本期应还金额：xxxx</span>
+            </div>
+            <div style="float: left;margin:15px 15px 15px 15px;">
+                <span style="font-size: 20px">最低还款金额：xxxx</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div style="float: left;margin:15px 15px 15px 15px;">
+                <span style="font-size: 20px">本期仍需还款：xxxx</span>
+            </div>
+            <div style="float: left;margin:15px 15px 15px 15px;">
+                <span style="font-size: 20px">到期还款日：xxxx</span>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card" style="width: 500px;float: left;">
+        <div class="layui-card-header" style="margin:15px 15px 15px 15px;">
+            <span style="font-size: 20px">中信腾讯王卡信用卡金卡</span>
+        </div>
+        <div class="layui-card-body" style="margin:15px 15px 15px 15px;">
+            <span style="font-size: 20px">卡号：777777777777777777777</span>
+        </div>
+        <div class="layui-card-body" >
+            <div style="float: left;margin:15px 15px 15px 15px;">
+                <span style="font-size: 20px">本期应还金额：xxxx</span>
+            </div>
+            <div style="float: left;margin:15px 15px 15px 15px;">
+                <span style="font-size: 20px">最低还款金额：xxxx</span>
+            </div>
+            <div style="clear: both;"></div>
+            <div style="float: left;margin:15px 15px 15px 15px;">
+                <span style="font-size: 20px">本期仍需还款：xxxx</span>
+            </div>
+            <div style="float: left;margin:15px 15px 15px 15px;">
+                <span style="font-size: 20px">到期还款日：xxxx</span>
+            </div>
+        </div>
+    </div>
+    <div style="float: left">
+        <a href="applyCard01.html">
+            <img src="../imgs/applyCard01.png">
+        </a>
+    </div>
+</div>
+<div>
+    <div>
+        <img src="../imgs/center01.png">
+    </div>
+    <div>
+        <img src="../imgs/center02.png">
+    </div>
+    <div>
+        <img src="../imgs/under01.png">
+    </div>
+</div>
+<script src="../layui/layui.js"></script>
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+    //轮播图
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+    });
+</script>
+</body>
+</html>

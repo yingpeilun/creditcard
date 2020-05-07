@@ -1,5 +1,5 @@
 server:
-  port: 10087 #10086
+  port: 10086 #10086
 spring:
   application:
     name: creditcard-registry

@@ -62,7 +62,7 @@ public class UserService {
             msg.put("code",code);
 
             this.rabbitTemplate.convertAndSend("creditCard.sms.exchange","sms.verify.code",msg);
-            this.redisTemplate.opsForValue().set(KEY_PREFIX+phone,code,5, TimeUnit.MINUTES);
+            this.redisTemplate.opsForValue().set(KEY_PREFIX+phone,code,10, TimeUnit.MINUTES);
             return true;
         } catch (AmqpException e) {
             e.printStackTrace();

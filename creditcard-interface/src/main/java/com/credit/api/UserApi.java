@@ -79,7 +79,7 @@ public interface UserApi {
      * @param companyInfo
      * @return
      */
-    @PostMapping("updateCompany")
+    @PostMapping("updateBasic")
     public Boolean updateCompany(TbCompanyInfo companyInfo);
 
     /**
@@ -95,6 +95,6 @@ public interface UserApi {
      * @param contactInfo
      * @return
      */
-    @PostMapping("updateContactInfo")
+    @PostMapping("updateBasic")
     public Boolean updateBasic(TbContactInfo contactInfo);
 }

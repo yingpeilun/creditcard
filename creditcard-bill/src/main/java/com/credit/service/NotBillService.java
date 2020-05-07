@@ -14,15 +14,16 @@ import java.util.Map;
 public interface NotBillService {
 
     /**
-     * 通过（上个月账单日）、（上上个月账单日-1）、（卡号）分页查找n个（上个月的每笔历史账单明细）
-     * @param s (上个月账单日+1)
-     * @param p （当月还款日-1）
-     * @param ccid 所选的卡号
+     * 通过（上个月账单日+1）、（当月还款日-1）、（卡号）分页查找n个（当月的每笔历史账单明细）
+     *  s (上个月账单日+1)
+     *  p （当月还款日-1）
+     *  ccid 所选的卡号
+     * @param map s p ccid
      * @param pageNo 第几页
      * @param pageSize 要几行
      * @return PageInfo pagehelper对象的PageInfo，方便分页
      */
-    public PageInfo<TbHistoryNotEverybill> selectOneMontheveryNotbillhistory(Date s, Date p, Long ccid, Integer pageNo, Integer pageSize);
+    public PageInfo<TbHistoryNotEverybill> selectOneMontheveryNotbillhistory(Map<String,Object> map, Integer pageNo, Integer pageSize);
 
 
     /**

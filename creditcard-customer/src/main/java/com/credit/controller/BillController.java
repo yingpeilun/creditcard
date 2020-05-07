@@ -84,7 +84,14 @@ public class BillController {
         Calendar c = Calendar.getInstance();
         int currentYear = c.get(Calendar.YEAR);//当前年份
         int currentMonth = (c.get(Calendar.MONTH)+1);//当前月份
-        int currentDay = c.get(Calendar.DAY_OF_WEEK);//当前日份
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
+        if (currentDay > 4){
+            currentMonth += 1;
+            if(currentMonth <= 0){
+                currentMonth = 12;
+                currentYear += 1;
+            }
+        }
         String dangmonth = getNum(currentMonth);//（处理数字，格式：两位数）
         String currentPayDate = currentYear +"年 "+ dangmonth +"月 04日";//最近还款日
         model.addAttribute("currentPayDate",currentPayDate);           // ==> 最近还款日
@@ -151,7 +158,7 @@ public class BillController {
             map.put("ss", shangshangbilldate);
             map.put("ccid", ccId);
             PageInfo<TbHistoryEverybill> ebpageInfo = billFeignClient.selectOneMonthEveryBillHistory(map, pageNo, pageSize);//【分页显示最近上月账单明细】
-            if (ebpageInfo == null) System.out.println("ebpageInfo is null");
+            if (ebpageInfo.getPages()==0) System.out.println("ebpageInfo is null");
             model.addAttribute("shangBillDate", shangbilldate);             // ==> 上个月账单日
             model.addAttribute("shangShangBillDate", shangshangbilldate);   // ==>（上上个月账单日+1）
             model.addAttribute("pageInfo", ebpageInfo);                     // ==> 账单明细
@@ -160,8 +167,8 @@ public class BillController {
             /***********************************账单概要（所选月的已结账单概要信息）*********************************/
             String newShangBillDate = selectYearMonth + "16";//所选上月账单日(String)
             Date newshangbilldate = StringToDate(newShangBillDate);//日期转换 --> (数据库的账单日的时分秒必须是0)
-            String newRepayDate = getRepayDateByYearMonth(selectYearMonth);
-            Date newrepayDate = StringToDate(newRepayDate);
+            String newRepayDate = getRepayDateByYearMonth(selectYearMonth);//所选月还款日(String)
+            Date newrepayDate = StringToDate(newRepayDate);//日期转换 --> (数据库的账单日的时分秒必须是0)
             TbHistorylMonthbill vo2 = billFeignClient.selectOneMonthBillHistory(newshangbilldate, ccId);//【通过所选上月账单日、卡号查询所选月历史账单概要信息】
             if (vo2 == null) System.out.println("vo2 is null");//判断是否获取（月历史账单）对象
             model.addAttribute("HistoryMonthBill", vo2);                   // ==> 账单概要(所选上月的)
@@ -175,8 +182,8 @@ public class BillController {
             map_1.put("ccid", ccId);
             PageInfo<TbHistoryEverybill> ebpageInfo = billFeignClient.selectOneMonthEveryBillHistory(map_1, pageNo, pageSize);//【分页显示所选上月账单明细】
             System.out.println(ebpageInfo);
-            if (ebpageInfo == null) System.out.println("ebpageInfo is null");
-            model.addAttribute("repayDate",newrepayDate);
+            if (ebpageInfo.getPageSize()==0) System.out.println("ebpageInfo is null");
+            model.addAttribute("repayDate",newrepayDate);                      // ==> 所选月还款日
             model.addAttribute("shangBillDate", newshangbilldate);             // ==> 所选上月账单日
             model.addAttribute("shangShangBillDate", newshangshangbilldate);   // ==>（所选上月的上个月账单日+1）
             model.addAttribute("pageInfo", ebpageInfo);                        // ==> 账单明细
@@ -259,8 +266,8 @@ public class BillController {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);//当前年份
         int month = (c.get(Calendar.MONTH)+1);//当前月份
-        int currentDay = c.get(Calendar.DAY_OF_WEEK);//当前日份
-        if (currentDay <= 16){
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
+        if (currentDay < 16){
             month -= 1;
             if(month <= 0){
                 month = 12;
@@ -279,8 +286,8 @@ public class BillController {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);//当前年份
         int month = (c.get(Calendar.MONTH)+1);//当前月份
-        int currentDay = c.get(Calendar.DAY_OF_WEEK);//当前日份
-        if (currentDay <= 16){
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);//当前日份
+        if (currentDay < 16){
             for (int p = 0; p < 2; p++) {
                 month -= 1;
                 if (month <= 0) {

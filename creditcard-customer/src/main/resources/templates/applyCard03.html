@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>中信信用卡申请页面-3</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+
+<!-- 你的HTML代码 -->
+<div>
+    <ul class="layui-nav">
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">我的账户</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">账单查询</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">信用卡还款</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">分期业务</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">卡片管理</a></li>
+        <li class="layui-nav-item layui-this"><a href="" style="font-size: 17px">申请卡片</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">客户信息管理</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">设置管理</a></li>
+        <li class="layui-nav-item">
+            <a href=""><img src="../imgs/head01.png" class="layui-nav-img" style="font-size: 17px">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;" style="font-size: 15px">修改信息</a></dd>
+                <dd><a href="javascript:;" style="font-size: 15px">安全管理</a></dd>
+                <dd><a href="javascript:;" style="font-size: 15px">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+<div style="float: left">
+    <div style="">
+        <img src="../imgs/applyCard03.png">
+    </div>
+    <div >
+        <img src="../imgs/applyCard04.png">
+    </div>
+</div>
+<div style="float: left">
+    <img src="../imgs/applyCard02.png">
+</div>
+<div style="width: 100%;text-align: center;margin-top: 200px;font-size: 15px">
+    <div  style="width: 950px;float: left">
+        <!--表单-->
+        <form class="layui-form" action="applyCardEnd.html" method="post">
+            <!--联系人姓名-->
+            <div class="layui-form-item">
+                <!--隐藏session中的uid-->
+                <input type="hidden" name="uid" value="">
+                <label class="layui-form-label">联系人姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="contactName" required  lay-verify="required" placeholder="请输入联系人姓名(String)" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--联系人电话-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">联系人电话</label>
+                <div class="layui-input-block">
+                    <input type="text" name="contactPhone" required  lay-verify="required" placeholder="请输入联系人电话(String)" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--与申请人关系（1为父子，2为母子，3为夫妻，4为亲戚，5为朋友，6为同事）-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">与申请人关系</label>
+                <div class="layui-input-block">
+                    <select name="reWithApplicant" lay-verify="required">
+                        <option value=""></option>
+                        <option value="1">父子</option>
+                        <option value="2">母子</option>
+                        <option value="3">夫妻</option>
+                        <option value="4">亲戚</option>
+                        <option value="5">朋友</option>
+                        <option value="6">同事</option>
+                    </select>
+                </div>
+            </div>
+            <!--电子邮箱-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">电子邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="email" required  lay-verify="required" placeholder="请输入电子邮箱(String)" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--卡片领取方式（1为挂号信邮寄，2银行网点自取）-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择框</label>
+                <div class="layui-input-block">
+                    <select name="getCardMethod" lay-verify="required">
+                        <option value=""></option>
+                        <option value="1">挂号信邮寄</option>
+                        <option value="2">银行网点自取</option>
+                    </select>
+                </div>
+            </div>
+
+            <!--提交与重置-->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" type="submit">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="../layui/layui.js"></script>
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
