@@ -1,30 +1,30 @@
 package com.credit.controller;
 
 import com.credit.api.BillApi;
+import com.credit.cilent.BillClient;
+import com.credit.cilent.RepaymentClient;
 import com.credit.pojo.TbCreditCardInfo;
 import com.credit.pojo.TbCreditCardSecurityInfo;
-import com.credit.service.BillFeignClient;
-import com.credit.service.RepaymentFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
 public class RepaymentController {
 
-    @Autowired
-    private RepaymentFeignClient repaymentFeignClient;
+    @Resource
+    private RepaymentClient repaymentClient;
 
-    @Autowired
-    private BillFeignClient billFeignClient;
+    @Resource
+    private BillClient billClient;
 
 
     @GetMapping("finduid")
     public String finduid(@RequestParam("uid") Long uid, Model model){
-        List<TbCreditCardSecurityInfo> list=billFeignClient.findCardIdListByUid(uid);
+        List<TbCreditCardSecurityInfo> list=billClient.findCardIdListByUid(uid);
         model.addAttribute("list",list);
         return "repayment";
     }
@@ -33,7 +33,7 @@ public class RepaymentController {
     @PostMapping("indrepaidamount")
     public String findrepaidamount(String ccId,Model model){
         Long value=Long.valueOf(ccId);
-        TbCreditCardInfo bCreditCardInfo=billFeignClient.findCardInfoByCcid(value);
+        TbCreditCardInfo bCreditCardInfo=billClient.findCardInfoByCcid(value);
         model.addAttribute("bCreditCardInfo",bCreditCardInfo);
         return "repayment";
     }
