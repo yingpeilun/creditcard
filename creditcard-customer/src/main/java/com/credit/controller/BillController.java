@@ -3,12 +3,12 @@ package com.credit.controller;
 import com.credit.cilent.BillClient;
 import com.credit.pojo.*;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,8 +24,8 @@ import java.util.*;
 @RequestMapping("/")
 public class BillController {
 
-    @Autowired
-    private BillClient billFeignClient;
+    @Resource
+    private BillClient billClient;
 
     /**
      * 已出账单查询
@@ -51,7 +51,7 @@ public class BillController {
         TbUser user = (TbUser) session.getAttribute("user");
         Long uid = user.getUid();*/
         Long uid = 1L;
-        List<TbCreditCardSecurityInfo> ccIdList = billFeignClient.findCardIdListByUid(uid);//【通过uid的查询所有信用片安全信息】
+        List<TbCreditCardSecurityInfo> ccIdList = billClient.findCardIdListByUid(uid);//【通过uid的查询所有信用片安全信息】
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         if(ccIdList.isEmpty()){
@@ -65,7 +65,7 @@ public class BillController {
         for (int i = 0; i < ccIdList.size(); i++) {
             TbCreditCardSecurityInfo vo = ccIdList.get(i);
             Long ccId = vo.getCcId();//卡号
-            TbCreditCardInfo jo = billFeignClient.findCardInfoByCcid(ccId);//【通过卡号查询信用卡信息】
+            TbCreditCardInfo jo = billClient.findCardInfoByCcid(ccId);//【通过卡号查询信用卡信息】
             Long repaidAmount = jo.getRepaidAmount(); //一张卡的需还款金额
             String cardName = jo.getCardName();//卡名
             Long cid = jo.getId();//获取卡片id主键（cid）
@@ -131,7 +131,7 @@ public class BillController {
             String shangBillDate = getshangBillday();//最近上个月的账单日(String)
             //Long shangBillDate_Long = Long.valueOf(shangBillDate);//最近上个月的账单日(Long)
             Date shangbilldate = StringToDate(shangBillDate);//日期转换 --> (数据库的账单日的时分秒必须是0)
-            TbHistorylMonthbill vo1 = billFeignClient.selectOneMonthBillHistory(shangbilldate, ccId);//【通过最近上月账单日、卡号查询当月历史账单概要信息】
+            TbHistorylMonthbill vo1 = billClient.selectOneMonthBillHistory(shangbilldate, ccId);//【通过最近上月账单日、卡号查询当月历史账单概要信息】
             Long currentRengRepaid = 0L;
             if (vo1 == null){
                 System.out.println("vo1 is null");//判断是否获取（月历史账单）对象
@@ -149,7 +149,7 @@ public class BillController {
             map.put("s", shangbilldate);
             map.put("ss", shangshangbilldate);
             map.put("ccid", ccId);
-            PageInfo<TbHistoryEverybill> ebpageInfo = billFeignClient.selectOneMonthEveryBillHistory(map, pageNo, pageSize);//【分页显示最近上月账单明细】
+            PageInfo<TbHistoryEverybill> ebpageInfo = billClient.selectOneMonthEveryBillHistory(map, pageNo, pageSize);//【分页显示最近上月账单明细】
             if (ebpageInfo.getPages()==0) System.out.println("ebpageInfo is null");
             model.addAttribute("shangRepayDate",newrepayDate_shang);        // ==> 上个月还款日
             model.addAttribute("shangBillDate", shangbilldate);             // ==> 上个月账单日
@@ -162,7 +162,7 @@ public class BillController {
             Date newshangbilldate = StringToDate(newShangBillDate);//日期转换 --> (数据库的账单日的时分秒必须是0)
             String newRepayDate = getRepayDateByYearMonth(selectYearMonth);//所选月还款日(String)
             Date newrepayDate = StringToDate(newRepayDate);//日期转换 --> (数据库的账单日的时分秒必须是0)
-            TbHistorylMonthbill vo2 = billFeignClient.selectOneMonthBillHistory(newshangbilldate, ccId);//【通过所选上月账单日、卡号查询所选月历史账单概要信息】
+            TbHistorylMonthbill vo2 = billClient.selectOneMonthBillHistory(newshangbilldate, ccId);//【通过所选上月账单日、卡号查询所选月历史账单概要信息】
             if (vo2 == null) System.out.println("vo2 is null");//判断是否获取（月历史账单）对象
             Long currentRengRepaid = 0L;
             model.addAttribute("currentRengRepaid", currentRengRepaid);    // ==> 当月仍需还款
@@ -175,7 +175,7 @@ public class BillController {
             map_1.put("s", newshangbilldate);
             map_1.put("ss", newshangshangbilldate);
             map_1.put("ccid", ccId);
-            PageInfo<TbHistoryEverybill> ebpageInfo = billFeignClient.selectOneMonthEveryBillHistory(map_1, pageNo, pageSize);//【分页显示所选上月账单明细】
+            PageInfo<TbHistoryEverybill> ebpageInfo = billClient.selectOneMonthEveryBillHistory(map_1, pageNo, pageSize);//【分页显示所选上月账单明细】
             System.out.println(ebpageInfo);
             if (ebpageInfo.getPages()==0) System.out.println("ebpageInfo is null");
             model.addAttribute("repayDate",newrepayDate);                      // ==> 所选月还款日
@@ -186,6 +186,11 @@ public class BillController {
         return "bill";
     }
 
+    /**
+     * 最近还款日
+     * @param c 日历对象
+     * @return
+     */
     private String getStringZuijinRepayDate(Calendar c) {
         int cYear = c.get(Calendar.YEAR);//当前年份
         int cMonth = (c.get(Calendar.MONTH)+1);//当前月份

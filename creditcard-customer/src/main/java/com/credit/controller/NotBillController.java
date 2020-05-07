@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -26,8 +27,8 @@ import java.util.*;
 @RequestMapping("/")
 public class NotBillController {
 
-    @Autowired
-    private BillClient billFeignClient;
+    @Resource
+    private BillClient billClient;
 
     /**
      * 未出账查询
@@ -51,7 +52,7 @@ public class NotBillController {
         TbUser user = (TbUser) session.getAttribute("user");
         Long uid = user.getUid();*/
         Long uid = 1L;
-        List<TbCreditCardSecurityInfo> ccIdList = billFeignClient.findCardIdListByUid(uid);//【通过uid的查询所有信用片安全信息】
+        List<TbCreditCardSecurityInfo> ccIdList = billClient.findCardIdListByUid(uid);//【通过uid的查询所有信用片安全信息】
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         if(ccIdList.isEmpty()){
@@ -64,7 +65,7 @@ public class NotBillController {
         for (int i = 0; i < ccIdList.size(); i++) {
             TbCreditCardSecurityInfo vo = ccIdList.get(i);
             Long ccId = vo.getCcId();//卡号
-            TbCreditCardInfo jo = billFeignClient.findCardInfoByCcid(ccId);//【通过卡号查询信用卡信息】
+            TbCreditCardInfo jo = billClient.findCardInfoByCcid(ccId);//【通过卡号查询信用卡信息】
             String cardName = jo.getCardName();//卡名
             TbCreditCardInfo po = new TbCreditCardInfo();
             po.setCcId(ccId);
@@ -89,7 +90,7 @@ public class NotBillController {
         map.put("s", shangbilldate);
         map.put("p", currentpaydate);
         map.put("ccid", ccId);
-        PageInfo<TbHistoryNotEverybill> enbpageInfo = billFeignClient.selectOneMonthEveryNotBillHistory(map, pageNo, pageSize);//【分页显示当月未出账单明细】
+        PageInfo<TbHistoryNotEverybill> enbpageInfo = billClient.selectOneMonthEveryNotBillHistory(map, pageNo, pageSize);//【分页显示当月未出账单明细】
         System.out.println(enbpageInfo);
         if (enbpageInfo.getPages()==0) System.out.println("enbpageInfo is null");
         model.addAttribute("pageInfo", enbpageInfo);                        // ==> 账单明细
