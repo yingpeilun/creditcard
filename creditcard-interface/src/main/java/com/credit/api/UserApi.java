@@ -14,6 +14,13 @@ import javax.validation.Valid;
 public interface UserApi {
 
     /**
+     * 验证手机号是否已注册
+     * @param phone
+     * @return
+     */
+    @GetMapping("validPhone")
+    public TbUser validPhone(@RequestParam("phone")String phone);
+    /**
      * 发送手机验证码
      * @param phone
      * @return

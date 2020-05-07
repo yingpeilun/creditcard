@@ -14,11 +14,21 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("user")
-public class UserComtroller {
+public class UserController {
 
     @Autowired
     private UserService userService;
+
+    /**
+     * 验证手机号是否已注册
+     * @param phone
+     * @return
+     */
+    @GetMapping("validPhone")
+    public ResponseEntity<TbUser> validPhone(@RequestParam("phone")String phone){
+        TbUser user=this.userService.validPhone(phone);
+        return ResponseEntity.ok(user);
+    }
 
     /**
      * 发送手机验证码
@@ -43,9 +53,6 @@ public class UserComtroller {
     @PostMapping("register")
     public ResponseEntity<Boolean> register(@Valid @RequestBody TbUser user, @RequestParam("code")String code){
         Boolean boo = this.userService.register(user, code);
-        if(!boo){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
         return ResponseEntity.ok(boo);
     }
 
@@ -60,9 +67,7 @@ public class UserComtroller {
             @RequestParam("username")String username,
             @RequestParam("password")String password){
         TbUser user = this.userService.login(username, password);
-        if(user==null){
-            return ResponseEntity.ok(user);
-        }
+
         return ResponseEntity.ok(user);
     }
 

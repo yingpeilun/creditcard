@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>中信信用卡申请页面-3</title>
+    <title>中信信用卡申请页面-2</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
 </head>
 <body>
@@ -43,54 +43,77 @@
 <div style="width: 100%;text-align: center;margin-top: 200px;font-size: 15px">
     <div  style="width: 950px;float: left">
         <!--表单-->
-        <form class="layui-form" action="applyCardEnd.html" method="post">
-            <!--联系人姓名-->
+        <form class="layui-form" action="/apply/applyCard03.html" method="post">
+            <!--公司名字-->
             <div class="layui-form-item">
                 <!--隐藏session中的uid-->
                 <input type="hidden" name="uid" value="">
-                <label class="layui-form-label">联系人姓名</label>
+                <label class="layui-form-label">公司名字</label>
                 <div class="layui-input-block">
-                    <input type="text" name="contactName" required  lay-verify="required" placeholder="请输入联系人姓名(String)" autocomplete="off" class="layui-input">
+                    <input type="text" name="companyName" required  lay-verify="required" placeholder="请输入公司名字(String)" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <!--联系人电话-->
+            <!--'公司类型(1为国有企业，2为私营企业，3事业单位，4政府关机，5为个体户)'-->
             <div class="layui-form-item">
-                <label class="layui-form-label">联系人电话</label>
+                <label class="layui-form-label">公司类型</label>
                 <div class="layui-input-block">
-                    <input type="text" name="contactPhone" required  lay-verify="required" placeholder="请输入联系人电话(String)" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <!--与申请人关系（1为父子，2为母子，3为夫妻，4为亲戚，5为朋友，6为同事）-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">与申请人关系</label>
-                <div class="layui-input-block">
-                    <select name="reWithApplicant" lay-verify="required">
+                    <select name="companyType" lay-verify="required">
                         <option value=""></option>
-                        <option value="1">父子</option>
-                        <option value="2">母子</option>
-                        <option value="3">夫妻</option>
-                        <option value="4">亲戚</option>
-                        <option value="5">朋友</option>
-                        <option value="6">同事</option>
+                        <option value="1">国有企业</option>
+                        <option value="2">私营企业</option>
+                        <option value="3">事业单位</option>
+                        <option value="4">政府机关</option>
+                        <option value="4">个体经营</option>
                     </select>
                 </div>
             </div>
-            <!--电子邮箱-->
+            <!--公司电话-->
             <div class="layui-form-item">
-                <label class="layui-form-label">电子邮箱</label>
+                <label class="layui-form-label">公司电话</label>
                 <div class="layui-input-block">
-                    <input type="text" name="email" required  lay-verify="required" placeholder="请输入电子邮箱(String)" autocomplete="off" class="layui-input">
+                    <input type="text" name="companyPhone" required  lay-verify="required" placeholder="请输入公司电话(String)" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <!--卡片领取方式（1为挂号信邮寄，2银行网点自取）-->
+            <!--从事行业-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">从事行业</label>
+                <div class="layui-input-block">
+                    <input type="text" name="industry" required  lay-verify="required" placeholder="请输入从事行业(String)" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--公司地址-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">公司地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="companyAddress" required  lay-verify="required" placeholder="请输入公司地址(String)" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--担任职务-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">担任职务</label>
+                <div class="layui-input-block">
+                    <input type="text" name="position" required  lay-verify="required" placeholder="请输入担任职务(String)" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--年收入（1为5万以下，2为5-15万，3为15-30万，4为30-50，5为50以上）-->
             <div class="layui-form-item">
                 <label class="layui-form-label">选择框</label>
                 <div class="layui-input-block">
-                    <select name="getCardMethod" lay-verify="required">
+                    <select name="income" lay-verify="required">
                         <option value=""></option>
-                        <option value="1">挂号信邮寄</option>
-                        <option value="2">银行网点自取</option>
+                        <option value="1">5万以下</option>
+                        <option value="2">5-15万</option>
+                        <option value="3">15-30万</option>
+                        <option value="4">30-50万</option>
+                        <option value="5">50万以上</option>
                     </select>
+                </div>
+            </div>
+            <!--安全问题-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮政编码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="postcode" required  lay-verify="required" placeholder="请输入邮政编码(Long)" autocomplete="off" class="layui-input">
                 </div>
             </div>
 

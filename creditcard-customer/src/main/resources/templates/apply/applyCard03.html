@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>中信信用卡申请页面-1</title>
+    <title>中信信用卡申请页面-3</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
 <!-- 你的HTML代码 -->
 <div>
     <ul class="layui-nav">
-        <li class="layui-nav-item"><a href="homePage" style="font-size: 17px">我的账户</a></li>
+        <li class="layui-nav-item"><a href="" style="font-size: 17px">我的账户</a></li>
         <li class="layui-nav-item"><a href="" style="font-size: 17px">账单查询</a></li>
         <li class="layui-nav-item"><a href="" style="font-size: 17px">信用卡还款</a></li>
         <li class="layui-nav-item"><a href="" style="font-size: 17px">分期业务</a></li>
@@ -43,74 +43,54 @@
 <div style="width: 100%;text-align: center;margin-top: 200px;font-size: 15px">
     <div  style="width: 950px;float: left">
         <!--表单-->
-        <form class="layui-form" action="applyCard02.html" method="post">
-            <!--婚姻状况 1为未婚，2为已婚，3为离异，4为丧偶-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">婚姻状况</label>
-                <div class="layui-input-block">
-                    <select name="maritalStatus" lay-verify="required">
-                        <option value=""></option>
-                        <option value="1">未婚</option>
-                        <option value="2">已婚</option>
-                        <option value="3">离异</option>
-                        <option value="4">丧偶</option>
-                    </select>
-                </div>
-            </div>
-            <!--教育程度 1为初中，2为高中，3为大专，4为本科，5为本科以上-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">教育程度</label>
-                <div class="layui-input-block">
-                    <select name="eduLevel" lay-verify="required">
-                        <option value=""></option>
-                        <option value="1">初中</option>
-                        <option value="2">高中</option>
-                        <option value="3">大专</option>
-                        <option value="4">本科</option>
-                        <option value="5">本科以上</option>
-                    </select>
-                </div>
-            </div>
-            <!--安全问题-->
+        <form class="layui-form" action="/apply/applyCardEnd.html" method="post">
+            <!--联系人姓名-->
             <div class="layui-form-item">
                 <!--隐藏session中的uid-->
                 <input type="hidden" name="uid" value="">
-                <label class="layui-form-label">安全问题</label>
+                <label class="layui-form-label">联系人姓名</label>
                 <div class="layui-input-block">
-                    <input type="text" name="securityQuestion" required  lay-verify="required" placeholder="请输入安全问题(String)" autocomplete="off" class="layui-input">
+                    <input type="text" name="contactName" required  lay-verify="required" placeholder="请输入联系人姓名(String)" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <!--安全问题-->
+            <!--联系人电话-->
             <div class="layui-form-item">
-                <label class="layui-form-label">预留答案</label>
+                <label class="layui-form-label">联系人电话</label>
                 <div class="layui-input-block">
-                    <input type="text" name="securityAnwers" required  lay-verify="required" placeholder="请输入预留答案(String)" autocomplete="off" class="layui-input">
+                    <input type="text" name="contactPhone" required  lay-verify="required" placeholder="请输入联系人电话(String)" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <!--当前住址-->
+            <!--与申请人关系（1为父子，2为母子，3为夫妻，4为亲戚，5为朋友，6为同事）-->
             <div class="layui-form-item">
-                <label class="layui-form-label">当前住址</label>
+                <label class="layui-form-label">与申请人关系</label>
                 <div class="layui-input-block">
-                    <input type="text" name="currentAddress" required  lay-verify="required" placeholder="请输入当前住址(String)" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <!--住宅情况（1为租房，2为自购房，3为自建房）-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">选择框</label>
-                <div class="layui-input-block">
-                    <select name="housingStatus" lay-verify="required">
+                    <select name="reWithApplicant" lay-verify="required">
                         <option value=""></option>
-                        <option value="1">租房</option>
-                        <option value="2">自购房</option>
-                        <option value="3">自建房</option>
+                        <option value="1">父子</option>
+                        <option value="2">母子</option>
+                        <option value="3">夫妻</option>
+                        <option value="4">亲戚</option>
+                        <option value="5">朋友</option>
+                        <option value="6">同事</option>
                     </select>
                 </div>
             </div>
-            <!--安全问题-->
+            <!--电子邮箱-->
             <div class="layui-form-item">
-                <label class="layui-form-label">邮政编码</label>
+                <label class="layui-form-label">电子邮箱</label>
                 <div class="layui-input-block">
-                    <input type="text" name="postcode" required  lay-verify="required" placeholder="请输入邮政编码(Long)" autocomplete="off" class="layui-input">
+                    <input type="text" name="email" required  lay-verify="required" placeholder="请输入电子邮箱(String)" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--卡片领取方式（1为挂号信邮寄，2银行网点自取）-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择框</label>
+                <div class="layui-input-block">
+                    <select name="getCardMethod" lay-verify="required">
+                        <option value=""></option>
+                        <option value="1">挂号信邮寄</option>
+                        <option value="2">银行网点自取</option>
+                    </select>
                 </div>
             </div>
 

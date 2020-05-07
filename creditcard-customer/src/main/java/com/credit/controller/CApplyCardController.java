@@ -3,17 +3,19 @@ package com.credit.controller;
 import com.credit.pojo.TbBasicInfo;
 import com.credit.pojo.TbCompanyInfo;
 import com.credit.pojo.TbContactInfo;
-import com.credit.service.ApplyCardService;
+import com.credit.service.CApplyCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ApplyCardController {
+@RequestMapping("apply")
+public class CApplyCardController {
 
     @Autowired
-    private ApplyCardService applyCardService;
+    private CApplyCardService applyCardService;
 
     /**
      * 进入主页面
@@ -32,7 +34,7 @@ public class ApplyCardController {
     @GetMapping("applyCard01.html")
     public String applyCardFirst(){
         System.out.println("进入办卡第一页");
-        return "applyCard01";
+        return "apply/applyCard01";
     }
 
     /**
@@ -47,7 +49,7 @@ public class ApplyCardController {
         if(!boo){
             return "error";
         }
-        return "applyCard02";
+        return "apply/applyCard02";
     }
 
     /**
@@ -62,7 +64,7 @@ public class ApplyCardController {
         if(!boo){
             return "error";
         }
-        return "applyCard03";
+        return "apply/applyCard03";
     }
 
     /**

@@ -19,6 +19,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -113,6 +114,8 @@ public class UserService {
         if(!CodesUtils.validate(password,user.getUserPwd())){
             return null;
         }
+        user.setLoginTime(new Date());
+        this.userMapper.updateByPrimaryKeySelective(user);
         return user;
     }
 
@@ -219,5 +222,17 @@ public class UserService {
 
         criteria.andEqualTo("uid",uid);
         return this.contactInfoMapper.updateByExampleSelective(contactInfo,example)!=0;
+    }
+
+    /**
+     * 验证手机号是否已注册
+     * @param phone
+     * @return
+     */
+    public TbUser validPhone(String phone) {
+        TbUser user=new TbUser();
+        user.setMobilePhone(phone);
+        TbUser tbUser = this.userMapper.selectOne(user);
+        return tbUser;
     }
 }

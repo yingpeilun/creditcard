@@ -1,18 +1,16 @@
 package com.credit.controller;
 
+import com.credit.cilent.BillClient;
 import com.credit.pojo.*;
-import com.credit.service.BillFeignClient;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -27,7 +25,7 @@ import java.util.*;
 public class BillController {
 
     @Autowired
-    private BillFeignClient billFeignClient;
+    private BillClient billFeignClient;
 
     /**
      * 已出账单查询

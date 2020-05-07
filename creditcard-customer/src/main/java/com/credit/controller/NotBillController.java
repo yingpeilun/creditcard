@@ -1,12 +1,10 @@
 package com.credit.controller;
 
+import com.credit.cilent.BillClient;
 import com.credit.pojo.TbCreditCardInfo;
 import com.credit.pojo.TbCreditCardSecurityInfo;
-import com.credit.pojo.TbHistoryEverybill;
 import com.credit.pojo.TbHistoryNotEverybill;
-import com.credit.service.BillFeignClient;
 import com.github.pagehelper.PageInfo;
-import com.sun.media.sound.MidiOutDeviceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +27,7 @@ import java.util.*;
 public class NotBillController {
 
     @Autowired
-    private BillFeignClient billFeignClient;
+    private BillClient billFeignClient;
 
     /**
      * 未出账查询

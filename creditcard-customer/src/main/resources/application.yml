@@ -1,26 +1,31 @@
 server:
-  port: 8095  #8084
-
+  port: 8084
 spring:
   application:
-    name: customer-service
+    name: cardmanage-service
   datasource:
-    url: jdbc:mysql://localhost:3306/carddatabase?useUnicode=true&characterEncoding=utf8
-    password: tiger
+    url: jdbc:mysql://localhost:3306/leyou?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
+    password: ab609609
     username: root
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-  mvc:
-    view:
-      prefix: /
-      suffix: .html
   main:
-    allow-bean-definition-overriding: true  #覆盖重复的Feign接口
+    allow-bean-definition-overriding: true
+  thymeleaf:
+    check-template-location: true
+    suffix: .html
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+    mode: HTML5
+    cache: false
+    prefix: classpath:/templates/
+
 
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:10086/eureka  #10086
+      defaultZone: http://127.0.0.1:10086/eureka
   instance:
     lease-renewal-interval-in-seconds: 5      #设置心跳时间5秒
     lease-expiration-duration-in-seconds: 15  #设置过期时间15秒

@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class ApplyCardService {
+public class CApplyCardService {
 
     @Resource
     private ApplyClient applyClient;
@@ -61,20 +61,16 @@ public class ApplyCardService {
      * @param contactInfo
      * @return
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Boolean applyCardEnd(TbContactInfo contactInfo) {
         Long uid = contactInfo.getUid();
         TbBasicInfo basicInfo = (TbBasicInfo)this.redisTemplate.opsForValue().get(UID_PREFIX + uid + "basicInfo");
         TbCompanyInfo companyInfo=(TbCompanyInfo)this.redisTemplate.opsForValue().get(UID_PREFIX+uid+"companyInfo");
 
-        try {
-            this.applyClient.insertBasic(basicInfo);
-            this.applyClient.insertCompany(companyInfo);
-            this.applyClient.insertContact(contactInfo);
+        this.applyClient.insertBasic(basicInfo);
+        this.applyClient.insertCompany(companyInfo);
+        this.applyClient.insertContact(contactInfo);
 
-        } catch (Exception e) {
-            throw new RuntimeException("插入异常，回滚");
-        }
         return true;
     }
 }

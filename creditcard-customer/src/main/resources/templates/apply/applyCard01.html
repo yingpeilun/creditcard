@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>中信信用卡申请页面-2</title>
+    <title>中信信用卡申请页面-1</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
 <!-- 你的HTML代码 -->
 <div>
     <ul class="layui-nav">
-        <li class="layui-nav-item"><a href="" style="font-size: 17px">我的账户</a></li>
+        <li class="layui-nav-item"><a href="homePage" style="font-size: 17px">我的账户</a></li>
         <li class="layui-nav-item"><a href="" style="font-size: 17px">账单查询</a></li>
         <li class="layui-nav-item"><a href="" style="font-size: 17px">信用卡还款</a></li>
         <li class="layui-nav-item"><a href="" style="font-size: 17px">分期业务</a></li>
@@ -43,69 +43,66 @@
 <div style="width: 100%;text-align: center;margin-top: 200px;font-size: 15px">
     <div  style="width: 950px;float: left">
         <!--表单-->
-        <form class="layui-form" action="applyCard03.html" method="post">
-            <!--公司名字-->
+        <form class="layui-form" action="/apply/applyCard02.html" method="post">
+            <!--婚姻状况 1为未婚，2为已婚，3为离异，4为丧偶-->
             <div class="layui-form-item">
-                <!--隐藏session中的uid-->
-                <input type="hidden" name="uid" value="">
-                <label class="layui-form-label">公司名字</label>
+                <label class="layui-form-label">婚姻状况</label>
                 <div class="layui-input-block">
-                    <input type="text" name="companyName" required  lay-verify="required" placeholder="请输入公司名字(String)" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <!--'公司类型(1为国有企业，2为私营企业，3事业单位，4政府关机，5为个体户)'-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">公司类型</label>
-                <div class="layui-input-block">
-                    <select name="companyType" lay-verify="required">
+                    <select name="maritalStatus" lay-verify="required">
                         <option value=""></option>
-                        <option value="1">国有企业</option>
-                        <option value="2">私营企业</option>
-                        <option value="3">事业单位</option>
-                        <option value="4">政府机关</option>
-                        <option value="4">个体经营</option>
+                        <option value="1">未婚</option>
+                        <option value="2">已婚</option>
+                        <option value="3">离异</option>
+                        <option value="4">丧偶</option>
                     </select>
                 </div>
             </div>
-            <!--公司电话-->
+            <!--教育程度 1为初中，2为高中，3为大专，4为本科，5为本科以上-->
             <div class="layui-form-item">
-                <label class="layui-form-label">公司电话</label>
+                <label class="layui-form-label">教育程度</label>
                 <div class="layui-input-block">
-                    <input type="text" name="companyPhone" required  lay-verify="required" placeholder="请输入公司电话(String)" autocomplete="off" class="layui-input">
+                    <select name="eduLevel" lay-verify="required">
+                        <option value=""></option>
+                        <option value="1">初中</option>
+                        <option value="2">高中</option>
+                        <option value="3">大专</option>
+                        <option value="4">本科</option>
+                        <option value="5">本科以上</option>
+                    </select>
                 </div>
             </div>
-            <!--从事行业-->
+            <!--安全问题-->
             <div class="layui-form-item">
-                <label class="layui-form-label">从事行业</label>
+                <!--隐藏session中的uid-->
+                <input type="hidden" name="uid" value="">
+                <label class="layui-form-label">安全问题</label>
                 <div class="layui-input-block">
-                    <input type="text" name="industry" required  lay-verify="required" placeholder="请输入从事行业(String)" autocomplete="off" class="layui-input">
+                    <input type="text" name="securityQuestion" required  lay-verify="required" placeholder="请输入安全问题(String)" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <!--公司地址-->
+            <!--安全问题-->
             <div class="layui-form-item">
-                <label class="layui-form-label">公司地址</label>
+                <label class="layui-form-label">预留答案</label>
                 <div class="layui-input-block">
-                    <input type="text" name="companyAddress" required  lay-verify="required" placeholder="请输入公司地址(String)" autocomplete="off" class="layui-input">
+                    <input type="text" name="securityAnwers" required  lay-verify="required" placeholder="请输入预留答案(String)" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <!--担任职务-->
+            <!--当前住址-->
             <div class="layui-form-item">
-                <label class="layui-form-label">担任职务</label>
+                <label class="layui-form-label">当前住址</label>
                 <div class="layui-input-block">
-                    <input type="text" name="position" required  lay-verify="required" placeholder="请输入担任职务(String)" autocomplete="off" class="layui-input">
+                    <input type="text" name="currentAddress" required  lay-verify="required" placeholder="请输入当前住址(String)" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <!--年收入（1为5万以下，2为5-15万，3为15-30万，4为30-50，5为50以上）-->
+            <!--住宅情况（1为租房，2为自购房，3为自建房）-->
             <div class="layui-form-item">
                 <label class="layui-form-label">选择框</label>
                 <div class="layui-input-block">
-                    <select name="income" lay-verify="required">
+                    <select name="housingStatus" lay-verify="required">
                         <option value=""></option>
-                        <option value="1">5万以下</option>
-                        <option value="2">5-15万</option>
-                        <option value="3">15-30万</option>
-                        <option value="4">30-50万</option>
-                        <option value="5">50万以上</option>
+                        <option value="1">租房</option>
+                        <option value="2">自购房</option>
+                        <option value="3">自建房</option>
                     </select>
                 </div>
             </div>

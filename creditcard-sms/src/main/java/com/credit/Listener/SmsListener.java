@@ -7,11 +7,12 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-@Component
+@Configuration
 public class SmsListener {
 
     @Autowired
@@ -25,7 +26,8 @@ public class SmsListener {
     public void ListenSms(Map<String,String> msg){
         String phone = msg.get("phone");
         String code = msg.get("code");
-
+        System.out.println("phone:"+phone);
+        System.out.println("code:"+code);
         if(StringUtils.isBlank(phone)||StringUtils.isBlank(code)){
             return;
         }
