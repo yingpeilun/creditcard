@@ -68,8 +68,11 @@
 </form>
 <input type="hidden" th:value="${(pageInfo.pages)==0?1:pageInfo.pages}" name="allpage" id="allpage" />
 <h3>账单概要：</h3>
+<p th:if="${currentRengRepaid!=0}">
+    <input type="button" value="立即还款" />
+</p>
 <p th:if="${HistoryMonthBill!=null}">账单币种：[[${HistoryMonthBill.moneyType}]]</p>
-<p th:if="${HistoryMonthBill!=null}">账单币种：人民币</p>
+<p th:if="${HistoryMonthBill==null}">账单币种：人民币</p>
 <p th:if="${ymi == yearMonthIndex&&HistoryMonthBill==null}">
     本期应还款金额：[[${#numbers.formatDecimal(0,1,'COMMA',2,'POINT')}]]&nbsp;&nbsp;
     本期已还金额：[[${#numbers.formatDecimal(0,1,'COMMA',2,'POINT')}]]&nbsp;&nbsp;
@@ -78,7 +81,7 @@
 <p th:if="${ymi == yearMonthIndex&&HistoryMonthBill==null}">
     最低还款金额：[[${#numbers.formatDecimal(0,1,'COMMA',2,'POINT')}]]&nbsp;&nbsp;
     本期未还金额：[[${#numbers.formatDecimal(currentRengRepaid,1,'COMMA',2,'POINT')}]]&nbsp;&nbsp;
-    到期还款日：[[${currentPayDate}]]
+    到期还款日：[[${#dates.format(shangRepayDate,'yyyy年MM月dd日')}]]
 </p>
 
 <p th:if="${ymi == yearMonthIndex&&HistoryMonthBill!=null}">

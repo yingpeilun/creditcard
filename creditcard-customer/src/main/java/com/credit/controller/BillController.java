@@ -128,6 +128,8 @@ public class BillController {
         if ("".equals(selectYearMonth)|| yearMonthIndex.equals(selectYearMonth)) {
             model.addAttribute("yearMonthIndex",yearMonthIndex);       // ==> 最近上月账单年月
             /***************************默认账单概要（默认是 最近上月的已结账单概要信息）*****************************/
+            String newRepayDate_shang = getRepayDateByYearMonth(yearMonthIndex);//所选月还款日(String)
+            Date newrepayDate_shang = StringToDate(newRepayDate_shang);//日期转换 --> (数据库的账单日的时分秒必须是0)
             String shangBillDate = getshangBillday();//最近上个月的账单日(String)
             //Long shangBillDate_Long = Long.valueOf(shangBillDate);//最近上个月的账单日(Long)
             Date shangbilldate = StringToDate(shangBillDate);//日期转换 --> (数据库的账单日的时分秒必须是0)
@@ -151,6 +153,7 @@ public class BillController {
             map.put("ccid", ccId);
             PageInfo<TbHistoryEverybill> ebpageInfo = billFeignClient.selectOneMonthEveryBillHistory(map, pageNo, pageSize);//【分页显示最近上月账单明细】
             if (ebpageInfo.getPages()==0) System.out.println("ebpageInfo is null");
+            model.addAttribute("shangRepayDate",newrepayDate_shang);        // ==> 上个月还款日
             model.addAttribute("shangBillDate", shangbilldate);             // ==> 上个月账单日
             model.addAttribute("shangShangBillDate", shangshangbilldate);   // ==>（上上个月账单日+1）
             model.addAttribute("pageInfo", ebpageInfo);                     // ==> 账单明细
@@ -163,6 +166,8 @@ public class BillController {
             Date newrepayDate = StringToDate(newRepayDate);//日期转换 --> (数据库的账单日的时分秒必须是0)
             TbHistorylMonthbill vo2 = billFeignClient.selectOneMonthBillHistory(newshangbilldate, ccId);//【通过所选上月账单日、卡号查询所选月历史账单概要信息】
             if (vo2 == null) System.out.println("vo2 is null");//判断是否获取（月历史账单）对象
+            Long currentRengRepaid = 0L;
+            model.addAttribute("currentRengRepaid", currentRengRepaid);    // ==> 当月仍需还款
             model.addAttribute("HistoryMonthBill", vo2);                   // ==> 账单概要(所选上月的)
             /***********************************账单明细（所选月的已结账单明细信息）*********************************/
             //所选上月的上个月的（账单日+1）
