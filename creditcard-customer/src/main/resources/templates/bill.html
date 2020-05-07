@@ -69,6 +69,7 @@
 <input type="hidden" th:value="${(pageInfo.pages)==0?1:pageInfo.pages}" name="allpage" id="allpage" />
 <h3>账单概要：</h3>
 <p th:if="${HistoryMonthBill!=null}">账单币种：[[${HistoryMonthBill.moneyType}]]</p>
+<p th:if="${HistoryMonthBill!=null}">账单币种：人民币</p>
 <p th:if="${ymi == yearMonthIndex&&HistoryMonthBill==null}">
     本期应还款金额：[[${#numbers.formatDecimal(0,1,'COMMA',2,'POINT')}]]&nbsp;&nbsp;
     本期已还金额：[[${#numbers.formatDecimal(0,1,'COMMA',2,'POINT')}]]&nbsp;&nbsp;

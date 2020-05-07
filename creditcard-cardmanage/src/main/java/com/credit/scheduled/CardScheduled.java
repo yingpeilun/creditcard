@@ -20,7 +20,7 @@ public class CardScheduled {
     /**
      * 定时更新信用卡信息
      */
-    @Scheduled(cron = "0 0 1 * * ?")
+    @Scheduled(cron = "0 0 1 * * ?")//每天凌晨1点执行一次
     public void updateCardDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String format = sdf.format(new Date());
@@ -32,11 +32,11 @@ public class CardScheduled {
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);//去掉一天
         Date calendarTime = calendar.getTime();
-        String newFormat = sdf.format(calendarTime);
+        String newFormat = sdf.format(calendarTime);//当天
 
-        Long billDate = this.functionService.queryBillDate(newFormat);
+        Long billDate = this.functionService.queryBillDate(newFormat);//账单日可能是空的
 
         this.functionService.scheduledUpdateCard(newFormat, billDate);
     }

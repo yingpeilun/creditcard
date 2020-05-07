@@ -182,7 +182,7 @@ public class BillController {
             map_1.put("ccid", ccId);
             PageInfo<TbHistoryEverybill> ebpageInfo = billFeignClient.selectOneMonthEveryBillHistory(map_1, pageNo, pageSize);//【分页显示所选上月账单明细】
             System.out.println(ebpageInfo);
-            if (ebpageInfo.getPageSize()==0) System.out.println("ebpageInfo is null");
+            if (ebpageInfo.getPages()==0) System.out.println("ebpageInfo is null");
             model.addAttribute("repayDate",newrepayDate);                      // ==> 所选月还款日
             model.addAttribute("shangBillDate", newshangbilldate);             // ==> 所选上月账单日
             model.addAttribute("shangShangBillDate", newshangshangbilldate);   // ==>（所选上月的上个月账单日+1）
@@ -216,6 +216,7 @@ public class BillController {
         String shangMonth_1 = getNum(month_I);
         return year_I + "" + shangMonth_1 + "17";
     }
+
     /**
      * 根据所选上月的年月 找寻 所选上月的下月的还款日
      * @param selectYearMonth 所选上月的年月

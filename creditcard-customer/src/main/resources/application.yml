@@ -15,7 +15,7 @@ spring:
       prefix: /
       suffix: .html
   main:
-    allow-bean-definition-overriding: true
+    allow-bean-definition-overriding: true  #覆盖重复的Feign接口
 
 eureka:
   client:

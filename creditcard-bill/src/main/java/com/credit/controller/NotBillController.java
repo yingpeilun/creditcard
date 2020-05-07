@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,5 +41,19 @@ public class NotBillController {
     @ResponseBody
     public PageInfo<TbHistoryNotEverybill> selectOneMonthEveryNotBillHistory(@RequestBody Map<String,Object> map,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize){
         return notBillService.selectOneMontheveryNotbillhistory(map, pageNo, pageSize);
+    }
+
+    /**
+     * 通过（上个月账单日+1）、（当月还款日-1）、（卡号）查找n个（当月的每笔历史账单明细）
+     *  s (上个月账单日+1)
+     *  p （当月还款日-1）
+     *  ccid 所选的卡号
+     * @param map s p ccid
+     * @return List<TbHistoryNotEverybill>
+     */
+    @PostMapping("/notbill/getOneMonthEveryNotBillHistory")
+    @ResponseBody
+    public List<TbHistoryNotEverybill> getOneMonthEveryNotBillHistory(@RequestBody Map<String,Object> map){
+        return notBillService.getOneMonthEveryNotbillHistory(map);
     }
 }

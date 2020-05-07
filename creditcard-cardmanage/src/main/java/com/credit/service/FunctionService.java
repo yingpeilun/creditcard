@@ -74,7 +74,7 @@ public class FunctionService {
     public void scheduledUpdateCard(String repayDateNum,Long billDateNum){
         Example example=new Example(TbCreditCardInfo.class);
         Example.Criteria criteria=example.createCriteria();
-        criteria.andEqualTo("repay_date_num",billDateNum);
+        criteria.andEqualTo("repay_date_num",billDateNum);//repay_date_num=（null或账单日）
 
         List<TbCreditCardInfo> infos = this.creditCardInfoMapper.selectByExample(example);
 
@@ -133,7 +133,7 @@ public class FunctionService {
         Example example=new Example(TbCreditCardInfo.class);
         Example.Criteria criteria=example.createCriteria();
         Long value = Long.valueOf(time);
-        criteria.andEqualTo("repay_date_num",value);
+        criteria.andEqualTo("repay_date_num",value);//repay_date_num=（当天）
 
         List<TbCreditCardInfo> infos = this.creditCardInfoMapper.selectByExample(example);
         if(infos != null && infos.size() >0){
