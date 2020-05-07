@@ -32,7 +32,6 @@ public class RepaymentController {
 
     @PostMapping("indrepaidamount")
     public String findrepaidamount(String ccId,Model model){
-        System.out.println("ccid:"+ccId);
         Long value=Long.valueOf(ccId);
         TbCreditCardInfo bCreditCardInfo=billFeignClient.findCardInfoByCcid(value);
         model.addAttribute("bCreditCardInfo",bCreditCardInfo);
