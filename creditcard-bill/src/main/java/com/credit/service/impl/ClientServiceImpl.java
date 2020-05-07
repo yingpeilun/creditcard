@@ -41,4 +41,12 @@ public class ClientServiceImpl implements ClientService {
         vo.setCcId(ccId);
         return creditCardInfoMapper.selectOne(vo);
     }
+
+    /**
+     * 查询所有信用卡
+     * @return List<TbCreditCardInfo>
+     */
+    public List<TbCreditCardInfo> findallTbCreditCardInfo(){
+        return creditCardInfoMapper.selectAll();
+    }
 }

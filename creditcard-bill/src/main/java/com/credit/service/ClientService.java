@@ -18,4 +18,10 @@ public interface ClientService {
      * @return
      */
     public TbCreditCardInfo findCardInfobyCcid(Long ccId);
+
+    /**
+     * 查询所有信用卡
+     * @return List<TbCreditCardInfo>
+     */
+    public List<TbCreditCardInfo> findallTbCreditCardInfo();
 }

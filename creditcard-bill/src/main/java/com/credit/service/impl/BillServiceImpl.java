@@ -1,6 +1,7 @@
 package com.credit.service.impl;
 
 import com.credit.mapper.*;
+import com.credit.pojo.TbCreditCardInfo;
 import com.credit.pojo.TbHistoryEverybill;
 import com.credit.pojo.TbHistorylMonthbill;
 import com.credit.service.BillService;
@@ -75,5 +76,35 @@ public class BillServiceImpl implements BillService {
      */
     public List<TbHistoryEverybill> getOneMonthEverybillHistory(Map<String,Object> map){
         return historyEveryBillMapper.getOneMonthEverybillHistory(map);
+    }
+
+    /**
+     * 添加 一笔封装好的已出账单 到 已出账单表(每笔的)
+     * @param vo 一笔封装好的已出账单
+     * @return boolean
+     */
+    public boolean inputOneBill(TbHistoryEverybill vo){
+        int ob = historyEveryBillMapper.insert(vo);
+        return ob > 0 ? true : false;
+    }
+
+    /**
+     * 添加 每一笔封装好的已出账单(List) 到 已出账单表(每笔的)
+     * @param voList List<TbHistoryEverybill>
+     * @return boolean
+     */
+    public boolean inputListBill(List<TbHistoryEverybill> voList){
+        int i = historyEveryBillMapper.insertList(voList);
+        return i > 0 ? true : false;
+    }
+
+    /**
+     * 添加已结账的月账单进入月已出账单表
+     * @param vo TbHistorylMonthbill
+     * @return boolean
+     */
+    public boolean inputMonthBill(TbHistorylMonthbill vo){
+        int i = historylMonthBillMapper.insertSelective(vo);
+        return i > 0 ? true : false ;
     }
 }

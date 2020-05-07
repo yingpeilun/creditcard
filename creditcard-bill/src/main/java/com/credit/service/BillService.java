@@ -52,5 +52,25 @@ public interface BillService {
      */
     public List<TbHistoryEverybill> getOneMonthEverybillHistory(Map<String,Object> map);
 
+    /**
+     * 添加 一笔封装好的已出账单 到 已出账单表(每笔的)
+     * @param vo 一笔封装好的已出账单
+     * @return boolean
+     */
+    public boolean inputOneBill(TbHistoryEverybill vo);
+
+    /**
+     * 添加 每一笔封装好的已出账单(List) 到 已出账单表(每笔的)
+     * @param voList List<TbHistoryEverybill>
+     * @return boolean
+     */
+    public boolean inputListBill(List<TbHistoryEverybill> voList);
+
+    /**
+     * 添加已结账的月账单进入月已出账单表
+     * @param vo TbHistorylMonthbill
+     * @return boolean
+     */
+    public boolean inputMonthBill(TbHistorylMonthbill vo);
 
 }
