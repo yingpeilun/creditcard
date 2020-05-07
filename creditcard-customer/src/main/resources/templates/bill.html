@@ -47,7 +47,7 @@
     </script>
 </head>
 <body>
-<h3>账单汇总</h3>
+<h3>已出账单汇总</h3>
 <p>需还款总额(人民币)：[[${#numbers.formatDecimal(sum,1,'COMMA',2,'POINT')}]]</p>
 <p>最近还款日：[[${currentPayDate}]]</p>
 <form id="form_1" name="form_1" action="../bill" method="post">
@@ -154,5 +154,6 @@
 <!-- end -->
 <input type="button" value="下一页" th:disabled="${pageInfo.pageNum==pageInfo.pages?true:false }" th:onclick="'javascript:gopage('+${(pageInfo.pageNum)+1}+');'" />
 <input type="button" value="尾页" th:disabled="${pageInfo.pageNum==pageInfo.pages?true:false }" th:onclick="'javascript:gopage('+${pageInfo.pages}+');'" />
+<a href="notbill">未出账单查询</a>
 </body>
 </html>

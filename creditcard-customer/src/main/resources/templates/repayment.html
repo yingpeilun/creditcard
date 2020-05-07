@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>还款页面</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../js/jquery-1.8.3.js"></script>
+    <script src="../layui/layui.js"></script>
+</head>
+<body>
+    <div class="layui-nav">
+        <option class="layui-nav-item">中信银行</option>
+    </div>
+    <div>
+        <img src="../imgs/center01.png">
+    </div>
+    <div>
+        <select name="" id="ccid" th:each="infos,status: ${list}">
+            <option value="${infos.ccId}" th:text="${infos.ccId}" name="ccId"></option>
+        </select>
+        <button id="queryCard">按钮</button>
+    </div>
+    <script>
+        $("#queryCard").click(function(){
+            var params=$('#ccid') //把id为ccid的form表单里的参数自动封装为参数传递
+            console.log(params.outerText)
+            $.ajax({
+                url: 'indrepaidamount',
+                type: 'Post',
+                datatype: 'text',
+                data: params,
+                success:function(bCreditCardInfo) {
+                    var ccid=bCreditCardInfo.ccId
+                    alert('ccid'+ccid);
+                }
+            })
+        })
+
+
+    </script>
+</body>
+</html>

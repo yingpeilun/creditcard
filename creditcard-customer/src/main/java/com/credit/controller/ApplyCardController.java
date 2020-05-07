@@ -19,7 +19,7 @@ public class ApplyCardController {
      * 进入主页面
      * @return
      */
-    @GetMapping("index")
+    @GetMapping("homePage")
     public String index(){
         System.out.println("我进来了");
         return "homePage";
