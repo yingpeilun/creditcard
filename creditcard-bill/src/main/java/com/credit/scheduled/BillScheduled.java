@@ -100,7 +100,7 @@ public class BillScheduled {
             TbHistorylMonthbill monthbill = new TbHistorylMonthbill();
             monthbill.setCcId(ccId);
             monthbill.setCurrConsumption(pay_sum);//某卡当月消费总金额（某卡当月需还款总金额）
-            monthbill.setRepayDate(zuijinPayDate_date);//
+            monthbill.setRepayDate(zuijinPayDate_date);
             monthbill.setRepayDateNum(zuijinPayDate_long);
             monthbill.setBillDate(currentBillDate_Date);
             monthbill.setBillDateNum(currentBillDate_Long);
@@ -110,9 +110,24 @@ public class BillScheduled {
             /* ~~~~~~~~~~5. 每张卡的月账单结果 添加到 已出月账单表~~~~~~~~~ */
             boolean b = billService.inputMonthBill(monthbill);
             System.out.println("添加已结好的月账单到已出月账单表:"+b);
-            /* ~~~~~~~~~更新信用卡信息表的账单日、还款日~~~~~~~~~ */
+            /* ~~~~~~~~~统计每张卡的需还款金额总和~~~~~~~~~ */
+            TbHistorylMonthbill monthbill_1 = new TbHistorylMonthbill();
+            monthbill_1.setCcId(ccId);
+            //【卡片每月的已出月账单的List集合】
+            List<TbHistorylMonthbill> cardMonthBillList = billService.getCardMonthBillList(monthbill_1);
+            Long consumptionSum = 0L;//当月应还款
+            Long repaiyAmountSum = 0L;//当月已还款
+            for (int p = 0; p < cardMonthBillList.size(); p++ ){
+                Long currConsumption = cardMonthBillList.get(p).getCurrConsumption();
+                consumptionSum += currConsumption;
+                Long currRepaid = cardMonthBillList.get(p).getCurrRepaid();
+                repaiyAmountSum += currRepaid;
+            }
+            /* ~~~~~~~~~更新信用卡信息表的账单日、还款日、需还款金额总额等~~~~~~~~~ */
             TbCreditCardInfo qo = new TbCreditCardInfo();
             qo.setId(id);
+            //qo.setRepaidAmount(repaiyAmountSum);//需还款总金额
+            qo.setConAmount(consumptionSum);//消费总金额(需还款总金额)
             qo.setBillDate(currentBillDate_Date);
             qo.setBillDateNum(currentBillDate_Long);
             qo.setRepayDate(zuijinPayDate_date);
@@ -120,8 +135,6 @@ public class BillScheduled {
             boolean b1 = clientService.updateBillDateAndRepayDate(qo);
             System.out.println("更新信用卡信息（账单日、还款日）:"+b1);
         }
-
-
     }
 
     /**
