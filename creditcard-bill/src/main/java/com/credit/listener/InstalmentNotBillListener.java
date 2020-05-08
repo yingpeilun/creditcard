@@ -16,7 +16,7 @@ public class InstalmentNotBillListener {
     @Autowired
     private NotBillService notBillService;
 
-    //监听还款
+    //监听分期账单
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "creditCard.bill.queue",durable = "true"),
             exchange = @Exchange(value = "creditCard.bill.exchange",type = "topic",ignoreDeclarationExceptions = "true"),
