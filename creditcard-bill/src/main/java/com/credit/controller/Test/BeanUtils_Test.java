@@ -59,5 +59,7 @@ public class BeanUtils_Test {
         map.put("d",789);
         System.out.println(map.get("d"));
 
+
+
     }
 }
