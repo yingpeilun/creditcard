@@ -14,10 +14,11 @@ import java.util.Map;
 public interface BillService {
     /**
      * 查询某卡 的（月已出账单）List集合
-     * @param vo TbHistorylMonthbill对象
-     * @return
+     * @param ccId 卡号
+     * @return List<TbHistorylMonthbill>
      */
-    public List<TbHistorylMonthbill> getCardMonthBillList(TbHistorylMonthbill vo);
+    public List<TbHistorylMonthbill> getCardMonthBillList(Long ccId);
+
     /**
      * 通过（最近上个月账单日）、（卡号） 查找1个 （上个月的历史账单概要）
      * @param OneMonthbillday 最近上个月账单日
