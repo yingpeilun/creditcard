@@ -50,4 +50,14 @@ public class NotBillServiceImpl implements NotBillService {
     public List<TbHistoryNotEverybill> getOneMonthEveryNotbillHistory(Map<String,Object> map){
         return historyNotEveryBillMapper.getOneMonthEveryNotbillHistory(map);
     }
+
+    /**
+     * 通过TbHistoryNotEverybill对象插入一笔交易未出账单
+     * @param vo TbHistoryNotEverybill对象
+     * @return
+     */
+    public boolean insertOneEveryBill(TbHistoryNotEverybill vo){
+        int insert = historyNotEveryBillMapper.insert(vo);
+        return insert>0?true:false;
+    }
 }
