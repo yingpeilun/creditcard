@@ -18,7 +18,7 @@ public class InstalmentNotBillListener {
 
     //监听分期账单
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "creditCard.bill.queue",durable = "true"),
+            value = @Queue(value = "creditCard.instalmentBill.queue",durable = "true"),
             exchange = @Exchange(value = "creditCard.bill.exchange",type = "topic",ignoreDeclarationExceptions = "true"),
             key = "instalment.bill.msg"
     ))
