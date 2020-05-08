@@ -25,6 +25,14 @@ public class BillServiceImpl implements BillService {
     private HistorylMonthBillMapper historylMonthBillMapper;
 
     /**
+     * 查询某卡 的（月已出账单）List集合
+     * @param vo TbHistorylMonthbill对象
+     * @return List<TbHistorylMonthbill>
+     */
+    public List<TbHistorylMonthbill> getCardMonthBillList(TbHistorylMonthbill vo){
+        return historylMonthBillMapper.select(vo);
+    }
+    /**
      * 通过（已出月账单日）、（卡号） 查找1个 （月历史账单概要）
      * @param oneMonthbillday 上个月账单日
      * @param ccid 卡号
