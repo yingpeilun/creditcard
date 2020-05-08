@@ -215,14 +215,17 @@ public class InstalmentService {
 
         if(insert!=0){
             Map<String,String>msg=new HashMap<>();
-            msg.put("ccid",ccid.toString());
-            msg.put("payInfo","分期");
-            msg.put("moneyType","人民币");
+            msg.put("ccid",ccid.toString());//卡号
+            msg.put("payInfo","分期");//交易描述
+            msg.put("moneyType","人民币");//币种
             Long c=Long.valueOf(everyMoney)*num;
-            msg.put("payAmount",c.toString());
-            msg.put("payDateNum",sdf.format(d));
-            msg.put("getMoneyCard","中信银行");
-            msg.put("billDateNum",dateformat1);
+            msg.put("payAmount",c.toString());//交易总金额(分期总本金)
+            msg.put("payDateNum",sdf.format(d));//交易日期（纯数字）
+            msg.put("getMoneyCard","中信银行");//收款账号
+            msg.put("billDateNum",dateformat1);//账单日(纯数字)
+            // ==>
+            msg.put("InstaTotal",String.valueOf(num));//分期总期数
+            msg.put("CurrPricipal",everyMoney);//当月本金
 
             this.rabbitTemplate.convertAndSend("creditCard.bill.exchange","instalment.bill.msg",msg);
             this.rabbitTemplate.convertAndSend("creditCard.manage.exchange","instalment.money.msg",msg);
