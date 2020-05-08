@@ -49,4 +49,14 @@ public class ClientServiceImpl implements ClientService {
     public List<TbCreditCardInfo> findallTbCreditCardInfo(){
         return creditCardInfoMapper.selectAll();
     }
+
+    /**
+     * 更新信用卡的账单日、还款日等
+     * @param vo TbCreditCardInfo对象
+     * @return
+     */
+    public boolean updateBillDateAndRepayDate(TbCreditCardInfo vo){
+        int i = creditCardInfoMapper.updateByPrimaryKeySelective(vo);
+        return i > 0 ? true : false;
+    }
 }

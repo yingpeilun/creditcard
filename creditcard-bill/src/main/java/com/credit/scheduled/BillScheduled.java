@@ -85,6 +85,7 @@ public class BillScheduled {
         map_2.put("s",currentBillDate);
         Long pay_sum;
         for (int i = 0; i < creditCardInfosList.size(); i++ ){
+            Long id = creditCardInfosList.get(i).getId();
             Long ccId = creditCardInfosList.get(i).getCcId();
             map_2.put("ccid",ccId);
             pay_sum = 0L;
@@ -109,7 +110,18 @@ public class BillScheduled {
             /* ~~~~~~~~~~5. 每张卡的月账单结果 添加到 已出月账单表~~~~~~~~~ */
             boolean b = billService.inputMonthBill(monthbill);
             System.out.println("添加已结好的月账单到已出月账单表:"+b);
+            /* ~~~~~~~~~更新信用卡信息表的账单日、还款日~~~~~~~~~ */
+            TbCreditCardInfo qo = new TbCreditCardInfo();
+            qo.setId(id);
+            qo.setBillDate(currentBillDate_Date);
+            qo.setBillDateNum(currentBillDate_Long);
+            qo.setRepayDate(zuijinPayDate_date);
+            qo.setRepayDateNum(zuijinPayDate_long);
+            boolean b1 = clientService.updateBillDateAndRepayDate(qo);
+            System.out.println("更新信用卡信息（账单日、还款日）:"+b1);
         }
+
+
     }
 
     /**

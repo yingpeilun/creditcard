@@ -24,4 +24,11 @@ public interface ClientService {
      * @return List<TbCreditCardInfo>
      */
     public List<TbCreditCardInfo> findallTbCreditCardInfo();
+
+    /**
+     * 更新信用卡的账单日、还款日等
+     * @param vo TbCreditCardInfo对象
+     * @return
+     */
+    public boolean updateBillDateAndRepayDate(TbCreditCardInfo vo);
 }
