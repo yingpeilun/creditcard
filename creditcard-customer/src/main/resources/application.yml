@@ -4,8 +4,8 @@ spring:
   application:
     name: cardmanage-service
   datasource:
-    url: jdbc:mysql://localhost:3306/leyou?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
-    password: ab609609
+    url: jdbc:mysql://localhost:3306/carddatabase?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
+    password: tiger
     username: root
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver

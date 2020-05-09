@@ -225,7 +225,8 @@ public class InstalmentService {
             msg.put("billDateNum",dateformat1);//账单日(纯数字)
             // ==>
             msg.put("InstaTotal",String.valueOf(num));//分期总期数
-            msg.put("CurrPricipal",everyMoney);//当月本金
+            msg.put("CurrPricipal",everyMoney);//每月本金
+            msg.put("CurrInserest",instalMoney);//每月利息
 
             this.rabbitTemplate.convertAndSend("creditCard.bill.exchange","instalment.bill.msg",msg);
             this.rabbitTemplate.convertAndSend("creditCard.manage.exchange","instalment.money.msg",msg);

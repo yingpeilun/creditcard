@@ -52,11 +52,11 @@ public class SavingCardService {
         });
         //消息列队
         Map<String,String>msg=new HashMap<>();
-        msg.put("bankName",bankName);
-        msg.put("cuName",cuName);
-        msg.put("repayMoney",repayMoney.toString());
-        msg.put("ccId",ccId.toString());
-        msg.put("scId",scId.toString());
+        msg.put("bankName",bankName);//银行名
+        msg.put("cuName",cuName);//户头名
+        msg.put("repayMoney",repayMoney.toString());//还款金额
+        msg.put("ccId",ccId.toString());//信用卡卡号
+        msg.put("scId",scId.toString());//储蓄卡卡号
         this.rabbitTemplate.convertAndSend("creditCard.repay.exchange","repay.money.msg",msg);
 
         map.put("message","还款成功");
