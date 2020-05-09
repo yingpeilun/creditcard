@@ -44,7 +44,7 @@ public class SavingCardService {
         Example example=new Example(TbSavingCard.class);
         Example.Criteria criteria=example.createCriteria();
 
-        criteria.andEqualTo("sc_id",scId);
+        criteria.andEqualTo("scId",scId);
         List<TbSavingCard> savingCards = this.savingCardMapper.selectByExample(example);
         savingCards.forEach(tbSavingCard -> {
             tbSavingCard.setTotalAmount(yue);

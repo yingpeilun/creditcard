@@ -107,7 +107,7 @@ public class ApplyService {
         Example example=new Example(TbAppCardStatus.class);
         Example.Criteria criteria=example.createCriteria();
 
-        criteria.andEqualTo("app_status",grade);
+        criteria.andEqualTo("appStatus",grade);
         example.setOrderByClause("`app_time` asc");
 
         List<TbAppCardStatus> list = this.appCardMapper.selectByExample(example);
@@ -127,7 +127,7 @@ public class ApplyService {
         Example example=new Example(TbAppCardStatus.class);
         Example.Criteria criteria=example.createCriteria();
 
-        criteria.andEqualTo("uid",uid).andEqualTo("card_type",cardType);
+        criteria.andEqualTo("uid",uid).andEqualTo("cardType",cardType);
         TbAppCardStatus app=new TbAppCardStatus();
         app.setAppStatus(grade+1);
 
@@ -145,7 +145,7 @@ public class ApplyService {
         Example example=new Example(TbAppCardStatus.class);
         Example.Criteria criteria=example.createCriteria();
 
-        criteria.andEqualTo("uid",uid).andEqualTo("card_type",cardType);
+        criteria.andEqualTo("uid",uid).andEqualTo("cardType",cardType);
         TbAppCardStatus app=new TbAppCardStatus();
         app.setCardStatus(2L);
 

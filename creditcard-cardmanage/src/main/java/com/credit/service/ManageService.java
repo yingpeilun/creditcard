@@ -53,7 +53,7 @@ public class ManageService {
         Example example2=new Example(TbCreditCardInfo.class);
         Example.Criteria criteria2=example2.createCriteria();
 
-        criteria2.andIn("cc_id",ccidList);
+        criteria2.andIn("ccId",ccidList);
 
         return this.creditCardInfoMapper.selectByExample(example2);
 
@@ -167,7 +167,7 @@ public class ManageService {
         Example example=new Example(TbCreditCardSecurityInfo.class);
         Example.Criteria criteria=example.createCriteria();
 
-        criteria.andEqualTo("cc_id",creditCardId).orEqualTo("id_card",idcard);
+        criteria.andEqualTo("ccId",creditCardId).orEqualTo("idCard",idcard);
                 //andLike("cc_id","%"+creditCardId+"%").orLike("id_card","%"+idcard+"%");
         return this.creditCardSecurityInfoMapper.selectByExample(example);
     }

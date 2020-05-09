@@ -74,7 +74,7 @@ public class FunctionService {
     public void scheduledUpdateCard(String repayDateNum,Long billDateNum){
         Example example=new Example(TbCreditCardInfo.class);
         Example.Criteria criteria=example.createCriteria();
-        criteria.andEqualTo("repay_date_num",billDateNum);//repay_date_num=（null或账单日）
+        criteria.andEqualTo("repayDateNum",billDateNum);//repay_date_num=（null或账单日）
 
         List<TbCreditCardInfo> infos = this.creditCardInfoMapper.selectByExample(example);
 
@@ -133,7 +133,7 @@ public class FunctionService {
         Example example=new Example(TbCreditCardInfo.class);
         Example.Criteria criteria=example.createCriteria();
         Long value = Long.valueOf(time);
-        criteria.andEqualTo("repay_date_num",value);//repay_date_num=（当天）
+        criteria.andEqualTo("repayDateNum",value);//repay_date_num=（当天）
 
         List<TbCreditCardInfo> infos = this.creditCardInfoMapper.selectByExample(example);
         if(infos != null && infos.size() >0){
@@ -149,9 +149,9 @@ public class FunctionService {
      */
     public List<TbUserCredit>queryUserCredit(){
 
-        Example example=new Example(TbCreditCardInfo.class);
+        Example example=new Example(TbUserCredit.class);
         Example.Criteria criteria=example.createCriteria();
-        criteria.andGreaterThan("overdue_amount",0);
+        criteria.andGreaterThan("overdueAmount",0);
 
         return this.userCreditMapper.selectByExample(example);
     }

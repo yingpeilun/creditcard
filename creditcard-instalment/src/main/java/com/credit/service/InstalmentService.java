@@ -246,7 +246,7 @@ public class InstalmentService {
     public PageResult<TbHistoryNotEverybill> queryNotEveryBill(Long ccid,Long notBillDateNum, Integer page, Integer rows) {
         Example example=new Example(TbHistoryNotEverybill.class);
         Example.Criteria criteria=example.createCriteria();
-        criteria.andEqualTo("cc_id",ccid).andEqualTo("bill_date_num",notBillDateNum);
+        criteria.andEqualTo("ccId",ccid).andEqualTo("billDateNum",notBillDateNum);
 
         //添加分页
         PageHelper.startPage(page,rows);
@@ -271,7 +271,7 @@ public class InstalmentService {
         Example example=new Example(TbHistoryNotEverybill.class);
         Example.Criteria criteria=example.createCriteria();
 
-        criteria.andEqualTo("cc_id",ccid).andEqualTo("bill_date_num",Long.valueOf(billDateNum));
+        criteria.andEqualTo("ccId",ccid).andEqualTo("billDateNum",Long.valueOf(billDateNum));
         //添加分页
         PageHelper.startPage(page,rows);
 
